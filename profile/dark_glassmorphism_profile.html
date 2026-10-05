@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile • | 𝐓 𝐇 𝐄 𝐍</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Kantumruy+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', 'Kantumruy Pro', sans-serif;
+            /* Cool dark anime aesthetic background */
+            background-image: url('https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+        }
+
+        .background-video {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 1.25s ease-in-out;
+        }
+
+        .background-video.is-active {
+            opacity: 1;
+        }
+
+        /* Subtle overlay to ensure readability without a main container */
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3); /* Lighter overlay to show more background */
+            z-index: 1;
+            transition: opacity 900ms ease;
+        }
+
+        body.has-entered .bg-overlay {
+            opacity: 0;
+        }
+
+        .profile-entering {
+            animation: profileEntrance 850ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        }
+
+        .profile-entering .profile-avatar {
+            animation: profileItemEntrance 700ms 100ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        }
+
+        .profile-entering .profile-name {
+            animation: nameEntrance 850ms 180ms cubic-bezier(0.2, 0.8, 0.2, 1) both,
+                nameGlowCycle 6s 1.03s ease-in-out infinite;
+        }
+
+        @keyframes profileEntrance {
+            from { opacity: 0; transform: translateY(18px) scale(0.985); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes nameEntrance {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes profileItemEntrance {
+            from { opacity: 0; transform: translateY(14px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes nameGlowCycle {
+            0%, 100% {
+                color: #c084fc;
+                text-shadow: 0 0 8px rgba(192, 132, 252, 0.6), 0 0 18px rgba(192, 132, 252, 0.35);
+            }
+            33% {
+                color: #60a5fa;
+                text-shadow: 0 0 8px rgba(96, 165, 250, 0.6), 0 0 18px rgba(96, 165, 250, 0.35);
+            }
+            66% {
+                color: #4ade80;
+                text-shadow: 0 0 8px rgba(74, 222, 128, 0.6), 0 0 18px rgba(74, 222, 128, 0.35);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .profile-entering,
+            .profile-entering .profile-avatar,
+            .profile-entering .profile-name {
+                animation: none !important;
+            }
+
+            .background-video,
+            .bg-overlay {
+                transition-duration: 1ms;
+            }
+        }
+
+        .roblox-icon {
+            width: 1rem;
+            height: 1rem;
+            object-fit: contain;
+            display: block;
+            filter: grayscale(1) brightness(1.1) contrast(1.2);
+            transition: all 0.3s ease;
+        }
+
+        .group:hover .roblox-icon {
+            filter: hue-rotate(180deg) saturate(1.7) brightness(1.18) contrast(1.15);
+            transform: scale(1.06);
+        }
+
+        .social-link {
+            min-height: 2.5rem;
+            padding: 0.5rem 0.75rem;
+            background: rgba(8, 10, 18, 0.26);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+        }
+
+        .social-link:hover {
+            background: rgba(8, 10, 18, 0.4);
+            border-color: rgba(255, 255, 255, 0.24);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+            transform: translateY(-1px);
+        }
+
+        .social-icon {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .music-player {
+            padding: 0.375rem;
+            background: rgba(8, 10, 16, 0.48);
+            border: 1px solid rgba(0, 0, 0, 0.9);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .music-player:hover {
+            background: rgba(8, 10, 16, 0.58);
+            border-color: #000;
+        }
+
+        .progress-bar {
+            transition: width 0.1s linear;
+        }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 10px; }
+
+        @media (max-width: 640px) {
+            body.antialiased {
+                min-height: 100svh;
+                min-height: 100dvh;
+                align-items: safe center;
+                padding: max(0.75rem, env(safe-area-inset-top))
+                    max(0.75rem, env(safe-area-inset-right))
+                    max(0.75rem, env(safe-area-inset-bottom))
+                    max(0.75rem, env(safe-area-inset-left));
+                background-attachment: scroll;
+            }
+
+            .background-video {
+                width: 100vw;
+                height: 100vh;
+                height: 100dvh;
+                object-fit: cover;
+                object-position: center;
+            }
+
+            #profileContent {
+                width: 100%;
+                gap: 0.5rem;
+            }
+
+            #profileContent > div:first-child {
+                gap: 0.75rem;
+            }
+
+            .profile-avatar {
+                margin-bottom: 0.5rem;
+            }
+
+            #profileContent > div:last-child {
+                margin-top: 0.75rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center text-white p-4 sm:p-8 antialiased isolate">
+    <video id="backgroundVideo" class="background-video is-active" muted playsinline preload="metadata" aria-hidden="true"></video>
+    <video id="nextBackgroundVideo" class="background-video" muted playsinline preload="metadata" aria-hidden="true"></video>
+    <div class="bg-overlay"></div>
+
+    <button id="entryOverlay" type="button" class="fixed inset-0 z-50 flex w-full items-center justify-center border-0 bg-black/80 p-0 text-white backdrop-blur-xl transition-opacity duration-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white/80">
+        <span class="text-lg font-semibold tracking-wide">Click to Enter...</span>
+    </button>
+
+    <!-- Main Container: compact, centered, and narrow like a mobile card -->
+    <main id="profileContent" class="w-full max-w-[300px] mx-auto flex flex-col items-center gap-3 relative z-10 opacity-0 invisible">
+        
+        <!-- Top Section: compact centered layout for profile and socials -->
+        <div class="flex flex-col gap-3 w-full items-center justify-center">
+            
+            <div class="flex flex-col items-center justify-center w-full text-center">
+                <div class="profile-avatar relative group mb-2">
+                    <!-- Avatar without a colored outline -->
+                    <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden bg-zinc-900 flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
+                        <!-- Local profile image -->
+                        <img src="Sadmes.jpg" 
+                             alt="Profile Picture" 
+                             class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Name with a cycling color glow -->
+                <h1 class="profile-name text-2xl sm:text-3xl font-extrabold mb-1 tracking-wider uppercase">
+                    • | 𝐓 𝐇 𝐄 𝐍
+                </h1>
+                
+                <p class="text-gray-100 font-medium text-xs sm:text-sm drop-shadow-md tracking-wide mt-0.5">
+                    歡迎, <span class="text-[11px] sm:text-xs">我真的很愛你</span>
+                </p>
+                
+            </div>
+
+            <div class="flex flex-col items-center gap-2 w-full">
+                
+                <!-- Facebook Link -->
+                <a href="https://www.facebook.com/share/19VE3HKFjo/" target="_blank" rel="noopener noreferrer" class="social-link group flex items-center justify-between w-full rounded-lg cursor-pointer max-w-full">
+                    <div class="flex items-center gap-2">
+                        <div class="social-icon w-6 h-6 rounded-full flex items-center justify-center text-white group-hover:text-blue-400 transition-colors">
+                            <i class="fab fa-facebook-f text-xs"></i>
+                        </div>
+                        <span class="font-medium text-xs text-white">Facebook</span>
+                    </div>
+                    <span class="text-[10px] text-white/90 group-hover:text-white transition-colors">Thean Thean</span>
+                </a>
+
+                <!-- TikTok Link -->
+                <a href="https://www.tiktok.com/@thenyazd?_r=1&_t=ZS-9AICZQdNsrY" target="_blank" rel="noopener noreferrer" class="social-link group flex items-center justify-between w-full rounded-lg cursor-pointer max-w-full">
+                    <div class="flex items-center gap-2">
+                        <div class="social-icon w-6 h-6 rounded-full flex items-center justify-center text-white group-hover:text-white transition-colors">
+                            <i class="fab fa-tiktok text-xs"></i>
+                        </div>
+                        <span class="font-medium text-xs text-white">TikTok</span>
+                    </div>
+                    <span class="text-[10px] text-white/90 group-hover:text-white transition-colors">@thenyazd</span>
+                </a>
+
+                <!-- Instagram Link -->
+                <a href="https://www.instagram.com/chan_thean_/?utm_source=qr&r=nametag" target="_blank" rel="noopener noreferrer" class="social-link group flex items-center justify-between w-full rounded-lg cursor-pointer max-w-full">
+                    <div class="flex items-center gap-2">
+                        <div class="social-icon w-6 h-6 rounded-full flex items-center justify-center text-white group-hover:text-pink-400 transition-colors">
+                            <i class="fab fa-instagram text-xs"></i>
+                        </div>
+                        <span class="font-medium text-xs text-white">Instagram</span>
+                    </div>
+                    <span class="text-[10px] text-white/90 group-hover:text-white transition-colors">@chan_thean_</span>
+                </a>
+
+                <!-- Discord Link -->
+                <a href="https://discord.gg/dAajxSJWg" target="_blank" rel="noopener noreferrer" class="social-link group flex items-center justify-between w-full rounded-lg cursor-pointer max-w-full">
+                    <div class="flex items-center gap-2">
+                        <div class="social-icon w-6 h-6 rounded-full flex items-center justify-center text-white group-hover:text-indigo-300 transition-colors">
+                            <i class="fab fa-discord text-xs"></i>
+                        </div>
+                        <span class="font-medium text-xs text-white">Discord</span>
+                    </div>
+                    <span class="text-[10px] text-white/90 group-hover:text-white transition-colors">nhotjesdekte</span>
+                </a>
+
+                <!-- Roblox Link -->
+                <a href="https://www.roblox.com/users/fmnasgjkgf/profile" target="_blank" rel="noopener noreferrer" class="social-link group flex items-center justify-between w-full rounded-lg cursor-pointer max-w-full">
+                    <div class="flex items-center gap-2">
+                        <div class="social-icon w-6 h-6 rounded-full flex items-center justify-center text-white transition-colors overflow-hidden">
+                            <img src="Roblox.jpg" alt="Roblox" class="roblox-icon" aria-label="Roblox logo" role="img">
+                        </div>
+                        <span class="font-medium text-xs text-white">Roblox</span>
+                    </div>
+                    <span class="text-[10px] text-white/90 group-hover:text-white transition-colors">fmnasgjkgf</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="w-full mt-3">
+            <!-- Compact music widget with translucent background -->
+            <div class="music-player w-full rounded-xl flex items-center gap-1.5 transition-all duration-300">
+                <!-- Music Cover -->
+                <div class="relative w-9 h-9 rounded-lg overflow-hidden flex-shrink-0 shadow-md">
+                    <img src="song1.jpg" class="w-full h-full object-cover" alt="Omg Chill cover">
+                </div>
+                
+                <!-- Song Info & Progress Bar -->
+                <div class="flex-1 min-w-0 pr-1">
+                    <h3 class="font-semibold text-[13px] text-gray-100 truncate drop-shadow-sm">Omg Chill</h3>
+                    <div class="flex items-center text-[10px] text-gray-300 mt-1 gap-2 font-mono drop-shadow-sm">
+                        <span id="currentTime">0:00</span>
+                        <div class="flex-1 h-[3px] bg-white/20 rounded-full relative overflow-hidden" role="progressbar" aria-label="Track progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                            <div id="progressFill" class="absolute top-0 left-0 h-full w-0 bg-white rounded-full progress-bar shadow-[0_0_5px_rgba(255,255,255,0.8)]"></div>
+                        </div>
+                        <span id="totalTime">3:58</span>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="flex gap-2 text-gray-200 items-center mr-0.5">
+                    <button id="rewindBtn" type="button" aria-label="Rewind 10 seconds" class="hover:text-white transition-colors active:scale-90 opacity-80 hover:opacity-100 bg-transparent border-0 p-0 shadow-none"><i class="fas fa-backward-step text-[14px]" aria-hidden="true"></i></button>
+                    <button id="playBtn" type="button" aria-label="Play music" aria-pressed="false" class="w-7 h-7 flex items-center justify-center text-white transition-all active:scale-90 hover:text-gray-200 bg-transparent border-0 p-0 shadow-none">
+                        <i class="fas fa-play text-[14px] drop-shadow-md" id="playIcon"></i>
+                    </button>
+                    <button id="forwardBtn" type="button" aria-label="Forward 10 seconds" class="hover:text-white transition-colors active:scale-90 opacity-80 hover:opacity-100 bg-transparent border-0 p-0 shadow-none"><i class="fas fa-forward-step text-[14px]" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const audio = new Audio('Chill.mp3');
+        audio.preload = 'metadata';
+        audio.loop = true;
+
+        const entryOverlay = document.getElementById('entryOverlay');
+        const profileContent = document.getElementById('profileContent');
+        const playBtn = document.getElementById('playBtn');
+        const playIcon = document.getElementById('playIcon');
+        const rewindBtn = document.getElementById('rewindBtn');
+        const forwardBtn = document.getElementById('forwardBtn');
+        const progressFill = document.getElementById('progressFill');
+        const progressBar = progressFill.parentElement;
+        const currentTimeDisplay = document.getElementById('currentTime');
+        const totalTimeDisplay = document.getElementById('totalTime');
+        let activeVideo = document.getElementById('backgroundVideo');
+        let standbyVideo = document.getElementById('nextBackgroundVideo');
+
+        const backgroundVideos = ['1.mp4', '2.mp4', '3.mp4', '4.mp4', '5.mp4'];
+        const lastInitialVideoStorageKey = 'backgroundVideoLastInitialIndex';
+        const crossfadeDuration = 1250;
+        const backgroundVideoFailuresBeforeStop = backgroundVideos.length;
+        let videoQueue = [];
+        let lastVideoIndex = -1;
+        let hasSelectedInitialVideo = false;
+        let standbyReady = false;
+        let activeVideoFailed = false;
+        let isTransitioning = false;
+        let standbyRequestId = 0;
+        let standbyCanPlayHandler;
+        let standbyErrorHandler;
+        let consecutiveVideoFailures = 0;
+        let consecutivePlaybackFailures = 0;
+
+        const getLastInitialVideoIndex = () => {
+            try {
+                const storedValue = localStorage.getItem(lastInitialVideoStorageKey);
+                if (storedValue === null) return -1;
+                const storedIndex = Number(storedValue);
+                return Number.isInteger(storedIndex) &&
+                    storedIndex >= 0 &&
+                    storedIndex < backgroundVideos.length
+                    ? storedIndex
+                    : -1;
+            } catch (error) {
+                console.warn('Unable to read the previous background video selection.', error);
+                return -1;
+            }
+        };
+
+        const getRandomVideoIndex = () => {
+            if (videoQueue.length === 0) {
+                videoQueue = backgroundVideos.map((_, index) => index);
+                for (let index = videoQueue.length - 1; index > 0; index--) {
+                    const swapIndex = Math.floor(Math.random() * (index + 1));
+                    [videoQueue[index], videoQueue[swapIndex]] = [videoQueue[swapIndex], videoQueue[index]];
+                }
+                if (!hasSelectedInitialVideo && videoQueue.length > 1 &&
+                    videoQueue[0] === getLastInitialVideoIndex()) {
+                    [videoQueue[0], videoQueue[1]] = [videoQueue[1], videoQueue[0]];
+                }
+                if (videoQueue.length > 1 && videoQueue[0] === lastVideoIndex) {
+                    [videoQueue[0], videoQueue[1]] = [videoQueue[1], videoQueue[0]];
+                }
+            }
+
+            lastVideoIndex = videoQueue.shift();
+            if (!hasSelectedInitialVideo) {
+                hasSelectedInitialVideo = true;
+                try {
+                    localStorage.setItem(lastInitialVideoStorageKey, String(lastVideoIndex));
+                } catch (error) {
+                    console.warn('Unable to save the background video selection.', error);
+                }
+            }
+            return lastVideoIndex;
+        };
+
+        const clearStandbyListeners = () => {
+            if (standbyCanPlayHandler) {
+                standbyVideo.removeEventListener('canplay', standbyCanPlayHandler);
+                standbyCanPlayHandler = undefined;
+            }
+            if (standbyErrorHandler) {
+                standbyVideo.removeEventListener('error', standbyErrorHandler);
+                standbyErrorHandler = undefined;
+            }
+        };
+
+        const prepareStandbyVideo = () => {
+            standbyReady = false;
+            clearStandbyListeners();
+            standbyVideo.pause();
+            standbyVideo.classList.remove('is-active');
+            standbyVideo.preload = 'auto';
+            standbyVideo.src = backgroundVideos[getRandomVideoIndex()];
+            standbyVideo.loop = false;
+
+            const requestId = ++standbyRequestId;
+            const videoToPrepare = standbyVideo;
+            standbyCanPlayHandler = () => {
+                if (requestId !== standbyRequestId || videoToPrepare !== standbyVideo) return;
+                clearStandbyListeners();
+                standbyReady = true;
+                consecutiveVideoFailures = 0;
+                if (activeVideo.ended || activeVideoFailed) transitionBackgroundVideo(true);
+            };
+            standbyErrorHandler = () => {
+                if (requestId !== standbyRequestId || videoToPrepare !== standbyVideo) return;
+                clearStandbyListeners();
+                consecutiveVideoFailures += 1;
+                console.warn(`Unable to load background video: ${videoToPrepare.currentSrc || videoToPrepare.src}`);
+                if (consecutiveVideoFailures >= backgroundVideoFailuresBeforeStop) {
+                    console.error('Background playlist stopped after repeated video load failures.');
+                    return;
+                }
+                prepareStandbyVideo();
+            };
+            standbyVideo.addEventListener('canplay', standbyCanPlayHandler, { once: true });
+            standbyVideo.addEventListener('error', standbyErrorHandler, { once: true });
+            standbyVideo.load();
+            if (standbyVideo.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) {
+                standbyCanPlayHandler();
+            }
+        };
+
+        const transitionBackgroundVideo = async (force = false) => {
+            if (isTransitioning || !standbyReady) return;
+            if (!force && (!Number.isFinite(activeVideo.duration) ||
+                activeVideo.duration - activeVideo.currentTime > crossfadeDuration / 1000)) return;
+
+            isTransitioning = true;
+            const incomingVideo = standbyVideo;
+            const outgoingVideo = activeVideo;
+            incomingVideo.currentTime = 0;
+            try {
+                await incomingVideo.play();
+            } catch (error) {
+                console.warn(`Unable to start background video: ${incomingVideo.currentSrc || incomingVideo.src}`, error);
+                isTransitioning = false;
+                consecutivePlaybackFailures += 1;
+                if (consecutivePlaybackFailures >= backgroundVideoFailuresBeforeStop) {
+                    console.error('Background playlist stopped after repeated playback failures.');
+                } else {
+                    prepareStandbyVideo();
+                }
+                return;
+            }
+
+            consecutivePlaybackFailures = 0;
+            outgoingVideo.classList.remove('is-active');
+            incomingVideo.classList.add('is-active');
+            activeVideo = incomingVideo;
+            standbyVideo = outgoingVideo;
+            activeVideoFailed = false;
+            standbyReady = false;
+
+            window.setTimeout(() => {
+                standbyVideo.pause();
+                standbyVideo.currentTime = 0;
+                isTransitioning = false;
+                prepareStandbyVideo();
+            }, crossfadeDuration);
+        };
+
+        const handleVideoTimeUpdate = (event) => {
+            if (event.currentTarget === activeVideo) transitionBackgroundVideo();
+        };
+
+        const handleVideoEnded = (event) => {
+            if (event.currentTarget === activeVideo) transitionBackgroundVideo(true);
+        };
+
+        const markActiveVideoFailed = (failedVideo, error) => {
+            if (failedVideo !== activeVideo || activeVideoFailed) return;
+            activeVideoFailed = true;
+            console.warn(`Unable to play background video: ${failedVideo.currentSrc || failedVideo.src}`, error);
+            if (standbyReady) transitionBackgroundVideo(true);
+        };
+
+        const handleVideoError = (event) => {
+            const failedVideo = event.currentTarget;
+            if (failedVideo === activeVideo) {
+                markActiveVideoFailed(failedVideo, failedVideo.error);
+            } else if (!isTransitioning && failedVideo === standbyVideo && standbyReady) {
+                standbyReady = false;
+                prepareStandbyVideo();
+            }
+        };
+
+        [activeVideo, standbyVideo].forEach((video) => {
+            video.addEventListener('timeupdate', handleVideoTimeUpdate);
+            video.addEventListener('ended', handleVideoEnded);
+            video.addEventListener('error', handleVideoError);
+        });
+
+        const startBackgroundPlaylist = async () => {
+            activeVideo.preload = 'auto';
+            activeVideo.src = backgroundVideos[getRandomVideoIndex()];
+            activeVideo.loop = false;
+            activeVideo.load();
+            prepareStandbyVideo();
+            try {
+                await activeVideo.play();
+            } catch (error) {
+                markActiveVideoFailed(activeVideo, error);
+            }
+        };
+
+        const formatTime = (seconds) => {
+            if (!Number.isFinite(seconds) || seconds < 0) return '0:00';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        };
+
+        const updateProgress = () => {
+            const duration = Number.isFinite(audio.duration) ? audio.duration : 0;
+            const current = Number.isFinite(audio.currentTime) ? audio.currentTime : 0;
+            const percentage = duration > 0 ? Math.min((current / duration) * 100, 100) : 0;
+            progressFill.style.width = `${percentage}%`;
+            progressBar.setAttribute('aria-valuenow', String(Math.round(percentage)));
+            currentTimeDisplay.textContent = formatTime(current);
+            totalTimeDisplay.textContent = formatTime(duration);
+        };
+
+        const updatePlayButton = () => {
+            const isPlaying = !audio.paused;
+            playIcon.classList.toggle('fa-play', !isPlaying);
+            playIcon.classList.toggle('fa-pause', isPlaying);
+            playBtn.setAttribute('aria-label', isPlaying ? 'Pause music' : 'Play music');
+            playBtn.setAttribute('aria-pressed', String(isPlaying));
+        };
+
+        const startPlayback = async () => {
+            if (!audio.paused) return;
+            try {
+                await audio.play();
+            } catch (error) {
+                if (error.name !== 'AbortError') {
+                    console.warn('Unable to start music playback.', error);
+                }
+                updatePlayButton();
+            }
+        };
+
+        const stopPlayback = () => {
+            audio.pause();
+            audio.currentTime = 0;
+            updateProgress();
+            updatePlayButton();
+        };
+
+        const seekBy = (seconds) => {
+            if (!Number.isFinite(audio.duration)) return;
+            audio.currentTime = Math.max(0, Math.min(audio.duration, audio.currentTime + seconds));
+            updateProgress();
+        };
+
+        audio.addEventListener('loadedmetadata', updateProgress);
+        audio.addEventListener('durationchange', updateProgress);
+        audio.addEventListener('timeupdate', updateProgress);
+        audio.addEventListener('play', updatePlayButton);
+        audio.addEventListener('pause', updatePlayButton);
+        audio.addEventListener('error', () => {
+            console.warn('Unable to load the music track.', audio.error);
+            updatePlayButton();
+        });
+
+        playBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                startPlayback();
+            } else {
+                stopPlayback();
+            }
+        });
+        rewindBtn.addEventListener('click', () => seekBy(-10));
+        forwardBtn.addEventListener('click', () => seekBy(10));
+
+        updateProgress();
+        updatePlayButton();
+        startBackgroundPlaylist();
+
+        entryOverlay.addEventListener('click', async () => {
+            document.body.classList.add('has-entered');
+            entryOverlay.classList.add('opacity-0', 'pointer-events-none');
+            profileContent.classList.add('profile-entering');
+            profileContent.classList.remove('opacity-0', 'invisible');
+            startPlayback();
+            try {
+                await activeVideo.play();
+            } catch (error) {
+                markActiveVideoFailed(activeVideo, error);
+            }
+            window.setTimeout(() => entryOverlay.remove(), 500);
+        }, { once: true });
+    </script>
+</body>
+</html>
