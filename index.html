@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Kantumruy+Pro:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="icon" href="umn.png">
+    <link rel="icon" href="Photo/umn.png">
 
     <style>
         body {
@@ -55,6 +55,145 @@
 
         body.has-entered .bg-overlay {
             opacity: 0;
+        }
+
+        .menu-button {
+            position: fixed;
+            top: max(1rem, env(safe-area-inset-top));
+            left: max(1rem, env(safe-area-inset-left));
+            z-index: 60;
+            display: flex;
+            width: 3rem;
+            height: 3rem;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 0.875rem;
+            background: rgba(8, 10, 18, 0.48);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.24);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            transition: background-color 200ms ease, border-color 200ms ease, transform 200ms ease;
+        }
+
+        .menu-button:hover {
+            background: rgba(8, 10, 18, 0.72);
+            border-color: rgba(255, 255, 255, 0.32);
+            transform: translateY(-1px);
+        }
+
+        .menu-button:focus-visible,
+        .drawer-close:focus-visible,
+        .drawer-link:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 3px;
+        }
+
+        .menu-bar {
+            position: absolute;
+            width: 1.25rem;
+            height: 2px;
+            border-radius: 999px;
+            background: #fff;
+            transition: transform 250ms ease, opacity 200ms ease;
+        }
+
+        .menu-bar:nth-child(1) { transform: translateY(-6px); }
+        .menu-bar:nth-child(3) { transform: translateY(6px); }
+
+        .menu-button[aria-expanded="true"] .menu-bar:nth-child(1) { transform: rotate(45deg); }
+        .menu-button[aria-expanded="true"] .menu-bar:nth-child(2) { opacity: 0; }
+        .menu-button[aria-expanded="true"] .menu-bar:nth-child(3) { transform: rotate(-45deg); }
+
+        .drawer-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            -webkit-backdrop-filter: blur(3px);
+            backdrop-filter: blur(3px);
+            transition: opacity 300ms ease, visibility 300ms ease;
+        }
+
+        .drawer-backdrop.is-open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .side-drawer {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 55;
+            display: flex;
+            width: min(20rem, calc(100vw - 3rem));
+            flex-direction: column;
+            padding: max(1.25rem, env(safe-area-inset-top)) 1.25rem 1.25rem;
+            background: rgba(8, 10, 18, 0.92);
+            box-shadow: 24px 0 60px rgba(0, 0, 0, 0.42);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            transform: translateX(-105%);
+            transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .side-drawer.is-open {
+            transform: translateX(0);
+        }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .drawer-close {
+            display: flex;
+            width: 2.5rem;
+            height: 2.5rem;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+            transition: background-color 200ms ease, transform 200ms ease;
+        }
+
+        .drawer-close:hover {
+            background: rgba(255, 255, 255, 0.14);
+            transform: rotate(4deg);
+        }
+
+        .drawer-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.9rem 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.86);
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: color 200ms ease, background-color 200ms ease, padding-left 200ms ease;
+        }
+
+        .drawer-link:hover {
+            padding-left: 1rem;
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+        }
+
+        .drawer-footer {
+            margin-top: auto;
+            padding-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
         .profile-entering {
@@ -246,6 +385,41 @@
     <video id="nextBackgroundVideo" class="background-video" muted playsinline preload="metadata" aria-hidden="true"></video>
     <div class="bg-overlay"></div>
 
+    <button id="menuButton" type="button" class="menu-button" aria-label="Open navigation menu" aria-controls="sideDrawer" aria-expanded="false">
+        <span class="menu-bar" aria-hidden="true"></span>
+        <span class="menu-bar" aria-hidden="true"></span>
+        <span class="menu-bar" aria-hidden="true"></span>
+    </button>
+
+    <div id="drawerBackdrop" class="drawer-backdrop" aria-hidden="true"></div>
+    <aside id="sideDrawer" class="side-drawer" aria-label="Navigation menu" aria-hidden="true">
+        <div class="drawer-header">
+            <span class="text-sm font-semibold tracking-wide text-white/80">Navigation</span>
+            <button id="drawerClose" type="button" class="drawer-close" aria-label="Close navigation menu">
+                <i class="fas fa-xmark text-sm" aria-hidden="true"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col">
+            <a class="drawer-link" href="#profileContent">
+                <span>Profile</span>
+                <i class="fas fa-chevron-right text-xs text-white/40" aria-hidden="true"></i>
+            </a>
+            <a class="drawer-link" href="https://www.facebook.com/share/19VE3HKFjo/" target="_blank" rel="noopener noreferrer">
+                <span>Facebook</span>
+                <i class="fas fa-external-link-alt text-xs text-white/40" aria-hidden="true"></i>
+            </a>
+            <a class="drawer-link" href="https://www.tiktok.com/@thenyazd?_r=1&_t=ZS-9AICZQdNsrY" target="_blank" rel="noopener noreferrer">
+                <span>TikTok</span>
+                <i class="fas fa-external-link-alt text-xs text-white/40" aria-hidden="true"></i>
+            </a>
+            <a class="drawer-link" href="https://www.instagram.com/chan_thean_/?utm_source=qr&r=nametag" target="_blank" rel="noopener noreferrer">
+                <span>Instagram</span>
+                <i class="fas fa-external-link-alt text-xs text-white/40" aria-hidden="true"></i>
+            </a>
+        </nav>
+        <p class="drawer-footer">Made with love · 2026</p>
+    </aside>
+
     <button id="entryOverlay" type="button" class="fixed inset-0 z-50 flex w-full items-center justify-center border-0 bg-black/80 p-0 text-white backdrop-blur-xl transition-opacity duration-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white/80">
         <span class="text-lg font-semibold tracking-wide">Click to Enter...</span>
     </button>
@@ -261,7 +435,7 @@
                     <!-- Avatar without a colored outline -->
                     <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden bg-zinc-900 flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
                         <!-- Local profile image -->
-                        <img src="Sadmes.jpg" 
+                        <img src="Photo/Sadmes.jpg" 
                              alt="Profile Picture" 
                              class="w-full h-full object-cover">
                     </div>
@@ -328,7 +502,7 @@
                 <a href="https://www.roblox.com/users/4093332676/profile" target="_blank" rel="noopener noreferrer" class="social-link group flex items-center justify-between w-full rounded-lg cursor-pointer max-w-full">
                     <div class="flex items-center gap-2">
                         <div class="social-icon w-6 h-6 rounded-full flex items-center justify-center text-white transition-colors overflow-hidden">
-                            <img src="Roblox.jpg" alt="Roblox" class="roblox-icon" aria-label="Roblox logo" role="img">
+                            <img src="Photo/Roblox.jpg" alt="Roblox" class="roblox-icon" aria-label="Roblox logo" role="img">
                         </div>
                         <span class="font-medium text-xs text-white">Roblox</span>
                     </div>
@@ -343,7 +517,7 @@
                 <div class="flex items-center gap-1.5">
                     <!-- Music Cover -->
                     <div class="relative w-9 h-9 rounded-lg overflow-hidden flex-shrink-0 shadow-md">
-                        <img id="trackCover" src="Sadmes.jpg" class="w-full h-full object-cover" alt="Music cover">
+                        <img id="trackCover" src="Photo/Sadmes.jpg" class="w-full h-full object-cover" alt="Music cover">
                     </div>
 
                     <!-- Song Info & Progress Bar -->
@@ -385,20 +559,20 @@
 
     <script>
         const audioFiles = [
-            '黑暗海滩.mp3',
-            'Worry.mp3',
-            '天竺旧梦.mp3',
-            '室内系的.mp3',
-            '最初的记忆.mp3'
+            'Sound/黑暗海滩.mp3',
+            'Sound/Worry.mp3',
+            'Sound/天竺旧梦.mp3',
+            'Sound/室内系的.mp3',
+            'Sound/最初的记忆.mp3'
         ];
-        const fallbackCover = 'Sadmes.jpg';
+        const fallbackCover = 'Photo/Sadmes.jpg';
         const playlist = audioFiles.map((file) => {
-            const title = file.replace(/\.[^.]+$/, '');
+            const title = file.replace(/\.[^.]+$/, '').replace(/^Sound\//, '');
 
             return {
                 title,
                 file: encodeURIComponent(file),
-                cover: encodeURIComponent(`${title}.jpeg`)
+                cover: encodeURIComponent(`Photo/${title}.jpeg`)
             };
         });
 
@@ -408,6 +582,11 @@
 
         const entryOverlay = document.getElementById('entryOverlay');
         const profileContent = document.getElementById('profileContent');
+        const menuButton = document.getElementById('menuButton');
+        const drawerBackdrop = document.getElementById('drawerBackdrop');
+        const sideDrawer = document.getElementById('sideDrawer');
+        const drawerClose = document.getElementById('drawerClose');
+        const drawerLinks = sideDrawer.querySelectorAll('a');
         const playBtn = document.getElementById('playBtn');
         const playIcon = document.getElementById('playIcon');
         const muteBtn = document.getElementById('muteBtn');
@@ -430,7 +609,7 @@
         let activeVideo = document.getElementById('backgroundVideo');
         let standbyVideo = document.getElementById('nextBackgroundVideo');
 
-        const backgroundVideos = ['1.mp4', '2.mp4', '3.mp4', '4.mp4', '5.mp4'];
+        const backgroundVideos = ['background/1.mp4', 'background/2.mp4', 'background/3.mp4', 'background/4.mp4', 'background/5.mp4'];
         const crossfadeDuration = 1250;
         const backgroundVideoFailuresBeforeStop = backgroundVideos.length;
         let videoQueue = [];
@@ -443,6 +622,24 @@
         let standbyErrorHandler;
         let consecutiveVideoFailures = 0;
         let consecutivePlaybackFailures = 0;
+        let isDrawerOpen = false;
+
+        const setDrawerOpen = (open) => {
+            isDrawerOpen = open;
+            sideDrawer.classList.toggle('is-open', open);
+            drawerBackdrop.classList.toggle('is-open', open);
+            menuButton.setAttribute('aria-expanded', String(open));
+            menuButton.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+            sideDrawer.setAttribute('aria-hidden', String(!open));
+            drawerBackdrop.setAttribute('aria-hidden', String(!open));
+            document.body.style.overflow = open ? 'hidden' : '';
+
+            if (open) {
+                drawerClose.focus();
+            } else {
+                menuButton.focus();
+            }
+        };
 
         const getRandomVideoIndex = () => {
             if (videoQueue.length === 0) {
@@ -727,6 +924,17 @@
                 audio.muted = true;
             }
             updateVolumeControls();
+        });
+
+        menuButton.addEventListener('click', () => setDrawerOpen(!isDrawerOpen));
+        drawerClose.addEventListener('click', () => setDrawerOpen(false));
+        drawerBackdrop.addEventListener('click', () => setDrawerOpen(false));
+        drawerLinks.forEach((link) => link.addEventListener('click', () => setDrawerOpen(false)));
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && isDrawerOpen) {
+                setDrawerOpen(false);
+            }
         });
 
         entryOverlay.addEventListener('click', async () => {
