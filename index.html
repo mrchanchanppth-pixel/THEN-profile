@@ -197,11 +197,31 @@
     </main>
 
     <section id="download" class="route-page destination-page" aria-labelledby="downloadTitle" tabindex="-1">
-        <h1 id="downloadTitle" class="destination-title">
-            <i class="fas fa-download" aria-hidden="true"></i>
-            Download
-        </h1>
-        <p class="destination-copy">Download links will be added here.</p>
+        <header class="download-header">
+            <p class="faq-eyebrow">DOWNLOAD CENTER</p>
+            <h1 id="downloadTitle" class="destination-title">
+                <i class="fas fa-download" aria-hidden="true"></i>
+                Downloads
+            </h1>
+            <p class="destination-copy">Choose a file below to download.</p>
+        </header>
+        <article class="download-card">
+            <div class="download-card-icon" aria-hidden="true">
+                <i class="fas fa-box-archive"></i>
+            </div>
+            <div class="download-card-content">
+                <p class="download-card-label">WINDOWS APPLICATION</p>
+                <h2>Discord Quest Completer</h2>
+                <p class="download-card-description">Support Windows 10/11 64-bit</p>
+                <p class="download-file-name">Discord Quest Completer</p>
+            </div>
+            <a class="download-button"
+                href="https://github.com/markterence/discord-quest-completer/releases/tag/2025.10.07"
+                target="_blank" rel="noopener noreferrer" aria-label="Download Discord Quest Completer for Windows 64-bit">
+                <span>Download</span>
+                <i class="fas fa-arrow-down" aria-hidden="true"></i>
+            </a>
+        </article>
     </section>
 
     <section id="faq" class="route-page destination-page faq-page" aria-labelledby="faqTitle" tabindex="-1">
@@ -218,37 +238,37 @@
             <nav class="faq-topics" role="tablist" aria-label="FAQ topics" aria-orientation="vertical">
                 <button id="faqTabMusic" class="faq-topic is-active" type="button" role="tab"
                     aria-selected="true" aria-controls="faqPanelMusic" tabindex="0" data-faq-tab="faqPanelMusic">
-                    <span class="faq-topic-number">01</span>
-                    <span>Play the music</span>
+                    <span class="faq-topic-number" aria-hidden="true">.</span>
+                    <span>Download</span>
                     <i class="fas fa-chevron-right" aria-hidden="true"></i>
                 </button>
                 <button id="faqTabNavigation" class="faq-topic" type="button" role="tab"
                     aria-selected="false" aria-controls="faqPanelNavigation" tabindex="-1" data-faq-tab="faqPanelNavigation">
-                    <span class="faq-topic-number">02</span>
+                    <span class="faq-topic-number" aria-hidden="true">.</span>
                     <span>Navigate the profile</span>
                     <i class="fas fa-chevron-right" aria-hidden="true"></i>
                 </button>
                 <button id="faqTabBackground" class="faq-topic" type="button" role="tab"
                     aria-selected="false" aria-controls="faqPanelBackground" tabindex="-1" data-faq-tab="faqPanelBackground">
-                    <span class="faq-topic-number">03</span>
+                    <span class="faq-topic-number" aria-hidden="true">.</span>
                     <span>Background videos</span>
                     <i class="fas fa-chevron-right" aria-hidden="true"></i>
                 </button>
                 <button id="faqTabDownloads" class="faq-topic" type="button" role="tab"
                     aria-selected="false" aria-controls="faqPanelDownloads" tabindex="-1" data-faq-tab="faqPanelDownloads">
-                    <span class="faq-topic-number">04</span>
+                    <span class="faq-topic-number" aria-hidden="true">.</span>
                     <span>Find downloads</span>
                     <i class="fas fa-chevron-right" aria-hidden="true"></i>
                 </button>
                 <button id="faqTabProfile" class="faq-topic" type="button" role="tab"
-                    aria-selected="false" aria-controls="faqPanelProfile" tabindex="-1" data-faq-tab="faqPanelProfile">
-                    <span class="faq-topic-number">05</span>
+                    aria-selected="false" aria-controls="faqPanelProfile" tabindex="-.1" data-faq-tab="faqPanelProfile">
+                    <span class="faq-topic-number" aria-hidden="true">.</span>
                     <span>Profile &amp; socials</span>
                     <i class="fas fa-chevron-right" aria-hidden="true"></i>
                 </button>
                 <button id="faqTabVolume" class="faq-topic" type="button" role="tab"
                     aria-selected="false" aria-controls="faqPanelVolume" tabindex="-1" data-faq-tab="faqPanelVolume">
-                    <span class="faq-topic-number">06</span>
+                    <span class="faq-topic-number" aria-hidden="true">.</span>
                     <span>Adjust volume</span>
                     <i class="fas fa-chevron-right" aria-hidden="true"></i>
                 </button>
@@ -256,99 +276,63 @@
 
             <div class="faq-content">
                 <article id="faqPanelMusic" class="faq-panel" role="tabpanel" aria-labelledby="faqTabMusic" tabindex="0">
-                    <p class="faq-panel-kicker">MUSIC PLAYER</p>
-                    <h2>How do I play the music?</h2>
-                    <p class="faq-panel-intro">Use the player at the bottom of the Profile page to listen and control playback.</p>
+                    <p class="faq-panel-kicker">DOWNLOADS</p>
+                    <h2>How to Download file ?</h2>
                     <ol class="faq-steps">
-                        <li><span>Open the navigation menu and choose <strong>Profile</strong>.</span></li>
-                        <li><span>Press the play button to start the current track.</span></li>
-                        <li><span>Use the previous and next controls to change tracks, or adjust the volume with the slider.</span></li>
+                        <li><div class="faq-step-content"><span>Open <strong>Profile</strong>.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
+                        <li><div class="faq-step-content"><span>Press play.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
+                        <li><div class="faq-step-content"><span>Choose a track or adjust the volume.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
                     </ol>
-                    <div class="faq-screenshot" role="img" aria-label="Screenshot placeholder for the music player">
-                        <i class="fas fa-image" aria-hidden="true"></i>
-                        <span>Add a music player screenshot here</span>
-                    </div>
-                    <!-- Replace the placeholder above with: <img class="faq-screenshot-image" src="Photo/your-screenshot.png" alt="Music player controls"> -->
                 </article>
 
                 <article id="faqPanelNavigation" class="faq-panel" role="tabpanel" aria-labelledby="faqTabNavigation" tabindex="0" hidden>
                     <p class="faq-panel-kicker">SITE NAVIGATION</p>
                     <h2>How do I navigate the profile?</h2>
-                    <p class="faq-panel-intro">Use the menu drawer to move between the profile, downloads, and help content.</p>
                     <ol class="faq-steps">
-                        <li><span>Open the menu using the button in the upper-left corner.</span></li>
-                        <li><span>Select <strong>Profile</strong>, <strong>Download</strong>, or <strong>FAQ</strong>.</span></li>
-                        <li><span>To close the drawer without navigating, press the close button or click outside it.</span></li>
+                        <li><div class="faq-step-content"><span>Open the menu.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
+                        <li><div class="faq-step-content"><span>Select a page.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
+                        <li><div class="faq-step-content"><span>Close the menu when finished.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
                     </ol>
-                    <div class="faq-screenshot" role="img" aria-label="Screenshot placeholder for the navigation menu">
-                        <i class="fas fa-image" aria-hidden="true"></i>
-                        <span>Add a navigation screenshot here</span>
-                    </div>
-                    <!-- Replace the placeholder above with: <img class="faq-screenshot-image" src="Photo/your-screenshot.png" alt="Navigation menu"> -->
                 </article>
 
                 <article id="faqPanelBackground" class="faq-panel" role="tabpanel" aria-labelledby="faqTabBackground" tabindex="0" hidden>
                     <p class="faq-panel-kicker">BACKGROUND</p>
                     <h2>How do the background videos work?</h2>
-                    <p class="faq-panel-intro">The page cycles through its background videos automatically while keeping the profile content in view.</p>
                     <ol class="faq-steps">
-                        <li><span>Choose <strong>Click to Enter</strong> to start the experience and allow playback.</span></li>
-                        <li><span>Videos change automatically using a smooth crossfade transition.</span></li>
-                        <li><span>If playback is unavailable, the profile remains usable while the page attempts another video.</span></li>
+                        <li><div class="faq-step-content"><span>Select <strong>Click to Enter</strong>.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
+                        <li><div class="faq-step-content"><span>Wait for the background to play.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
+                        <li><div class="faq-step-content"><span>The video changes automatically.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
                     </ol>
-                    <div class="faq-screenshot" role="img" aria-label="Screenshot placeholder for the animated background">
-                        <i class="fas fa-image" aria-hidden="true"></i>
-                        <span>Add a background video screenshot here</span>
-                    </div>
-                    <!-- Replace the placeholder above with: <img class="faq-screenshot-image" src="Photo/your-screenshot.png" alt="Animated page background"> -->
                 </article>
 
                 <article id="faqPanelDownloads" class="faq-panel" role="tabpanel" aria-labelledby="faqTabDownloads" tabindex="0" hidden>
                     <p class="faq-panel-kicker">DOWNLOADS</p>
                     <h2>Where can I find downloads?</h2>
-                    <p class="faq-panel-intro">The Download page is the home for files and resources you choose to share.</p>
                     <ol class="faq-steps">
-                        <li><span>Open the navigation menu and select <strong>Download</strong>.</span></li>
-                        <li><span>Browse the available file links on that page.</span></li>
-                        <li><span>Choose a link to open or save the resource.</span></li>
+                        <li><div class="faq-step-content"><span>Open the menu and select <strong>Download</strong>.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
+                        <li><div class="faq-step-content"><span>Find a file.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
+                        <li><div class="faq-step-content"><span>Select its link.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
                     </ol>
-                    <div class="faq-screenshot" role="img" aria-label="Screenshot placeholder for the Download page">
-                        <i class="fas fa-image" aria-hidden="true"></i>
-                        <span>Add a Download page screenshot here</span>
-                    </div>
-                    <!-- Replace the placeholder above with: <img class="faq-screenshot-image" src="Photo/your-screenshot.png" alt="Download page"> -->
                 </article>
 
                 <article id="faqPanelProfile" class="faq-panel" role="tabpanel" aria-labelledby="faqTabProfile" tabindex="0" hidden>
                     <p class="faq-panel-kicker">PROFILE</p>
                     <h2>How do I view the profile and social links?</h2>
-                    <p class="faq-panel-intro">The Profile page brings the profile information and social links together in one place.</p>
                     <ol class="faq-steps">
-                        <li><span>Choose <strong>Profile</strong> from the navigation menu.</span></li>
-                        <li><span>Review the profile details and social cards.</span></li>
-                        <li><span>Select a social card to open its destination in a new tab.</span></li>
+                        <li><div class="faq-step-content"><span>Open <strong>Profile</strong>.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
+                        <li><div class="faq-step-content"><span>Review the profile and social links.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
+                        <li><div class="faq-step-content"><span>Select a social link.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
                     </ol>
-                    <div class="faq-screenshot" role="img" aria-label="Screenshot placeholder for profile and social links">
-                        <i class="fas fa-image" aria-hidden="true"></i>
-                        <span>Add a profile screenshot here</span>
-                    </div>
-                    <!-- Replace the placeholder above with: <img class="faq-screenshot-image" src="Photo/your-screenshot.png" alt="Profile and social links"> -->
                 </article>
 
                 <article id="faqPanelVolume" class="faq-panel" role="tabpanel" aria-labelledby="faqTabVolume" tabindex="0" hidden>
                     <p class="faq-panel-kicker">AUDIO CONTROLS</p>
                     <h2>How do I adjust or mute the music?</h2>
-                    <p class="faq-panel-intro">The music player includes a volume slider and a dedicated mute control.</p>
                     <ol class="faq-steps">
-                        <li><span>Use the slider to set the preferred volume level.</span></li>
-                        <li><span>Press the speaker button to mute or restore audio.</span></li>
-                        <li><span>Use the play button separately to pause or resume the current track.</span></li>
+                        <li><div class="faq-step-content"><span>Move the volume slider.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
+                        <li><div class="faq-step-content"><span>Press the speaker button to mute or unmute.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
+                        <li><div class="faq-step-content"><span>Use play to pause or resume.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
                     </ol>
-                    <div class="faq-screenshot" role="img" aria-label="Screenshot placeholder for the audio controls">
-                        <i class="fas fa-image" aria-hidden="true"></i>
-                        <span>Add an audio controls screenshot here</span>
-                    </div>
-                    <!-- Replace the placeholder above with: <img class="faq-screenshot-image" src="Photo/your-screenshot.png" alt="Volume and mute controls"> -->
                 </article>
             </div>
         </div>
