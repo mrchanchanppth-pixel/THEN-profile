@@ -84,6 +84,16 @@ const audioFiles = [
             ['download', document.getElementById('download')],
             ['faq', document.getElementById('faq')]
         ]);
+        if (window.location.hash) {
+            window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+        }
+
+        const animatePageEntry = (page) => {
+            page.classList.remove('page-animate-in');
+            void page.offsetWidth;
+            page.classList.add('page-animate-in');
+        };
+
         const showCurrentRoute = (moveFocus = false) => {
             const requestedRoute = window.location.hash.slice(1);
             const activePage = routePages.get(requestedRoute) || profileContent;
@@ -92,11 +102,20 @@ const audioFiles = [
                 page.classList.toggle('is-active', page === activePage);
             });
 
+            animatePageEntry(activePage);
             if (moveFocus) activePage.focus({ preventScroll: true });
         };
 
         window.addEventListener('hashchange', () => showCurrentRoute(true));
         showCurrentRoute();
+        document.querySelectorAll('.desktop-nav-link, .drawer-link').forEach((link) => {
+            link.addEventListener('click', () => {
+                const targetPage = routePages.get(link.hash.slice(1));
+                if (targetPage?.classList.contains('is-active')) {
+                    animatePageEntry(targetPage);
+                }
+            });
+        });
 
         const faqTabs = Array.from(document.querySelectorAll('[data-faq-tab]'));
         const activateFaqTab = (activeTab, moveFocus = false) => {
@@ -365,6 +384,10 @@ const audioFiles = [
             try {
                 await audio.play();
             } catch (error) {
+                if (error.name === 'NotAllowedError') {
+                    updatePlayButton();
+                    return;
+                }
                 if (error.name !== 'AbortError') {
                     console.warn('Unable to autoplay music; playback may require a user gesture.', error);
                 }
@@ -400,7 +423,17 @@ const audioFiles = [
 
         changeTrack(currentTrackIndex, false);
         updateVolumeControls();
+        void startPlayback();
         void startBackgroundPlaylist();
+
+        const handlePlaybackGesture = () => {
+            if (!audio.paused) {
+                document.removeEventListener('click', handlePlaybackGesture);
+                return;
+            }
+            void startPlayback();
+        };
+        document.addEventListener('click', handlePlaybackGesture);
 
         volumeSlider.addEventListener('input', () => {
             const volume = Number(volumeSlider.value);
