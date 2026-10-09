@@ -69,6 +69,7 @@ const audioFiles = [
             menuButton.setAttribute('aria-expanded', String(open));
             menuButton.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
             sideDrawer.setAttribute('aria-hidden', String(!open));
+            sideDrawer.inert = !open;
             drawerBackdrop.setAttribute('aria-hidden', String(!open));
             document.body.style.overflow = open ? 'hidden' : '';
 
@@ -84,10 +85,6 @@ const audioFiles = [
             ['download', document.getElementById('download')],
             ['faq', document.getElementById('faq')]
         ]);
-        if (window.location.hash) {
-            window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
-        }
-
         const animatePageEntry = (page) => {
             page.classList.remove('page-animate-in');
             void page.offsetWidth;
@@ -423,7 +420,11 @@ const audioFiles = [
 
         changeTrack(currentTrackIndex, false);
         updateVolumeControls();
-        void startPlayback();
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => void startPlayback(), { once: true });
+        } else {
+            void startPlayback();
+        }
         void startBackgroundPlaylist();
 
         const handlePlaybackGesture = () => {

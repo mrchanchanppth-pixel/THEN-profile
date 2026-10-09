@@ -40,7 +40,7 @@
     </nav>
 
     <div id="drawerBackdrop" class="drawer-backdrop" aria-hidden="true"></div>
-    <aside id="sideDrawer" class="side-drawer" aria-label="Navigation menu" aria-hidden="true">
+    <aside id="sideDrawer" class="side-drawer" aria-label="Navigation menu" aria-hidden="true" inert>
         <div class="drawer-header">
             <span class="drawer-title">Menu</span>
             <button id="drawerClose" type="button" class="drawer-close" aria-label="Close navigation menu">
@@ -217,111 +217,75 @@
         </header>
         <div class="download-grid" aria-label="Available downloads">
             <article class="download-card">
-                <img src="download 1.jpg" alt="Download 1 Thumbnail" class="card-thumb">
                 <div class="download-card-content">
                     <h2>Item Title 1</h2>
                     <p class="download-card-description">Version 1.0.0</p>
                 </div>
-                <a class="download-button" href="#">
-                    <span>Download</span>
-                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                </a>
+                <button class="download-button" type="button" disabled>Download unavailable</button>
             </article>
 
             <article class="download-card">
-                <img src="download 2.jpg" alt="Download 2 Thumbnail" class="card-thumb">
                 <div class="download-card-content">
                     <h2>Item Title 2</h2>
                     <p class="download-card-description">Version 1.0.0</p>
                 </div>
-                <a class="download-button" href="#">
-                    <span>Download</span>
-                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                </a>
+                <button class="download-button" type="button" disabled>Download unavailable</button>
             </article>
 
             <article class="download-card">
-                <img src="download 3.jpg" alt="Download 3 Thumbnail" class="card-thumb">
                 <div class="download-card-content">
                     <h2>Item Title 3</h2>
                     <p class="download-card-description">Version 1.0.0</p>
                 </div>
-                <a class="download-button" href="#">
-                    <span>Download</span>
-                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                </a>
+                <button class="download-button" type="button" disabled>Download unavailable</button>
             </article>
 
             <article class="download-card">
-                <img src="download 4.jpg" alt="Download 4 Thumbnail" class="card-thumb">
                 <div class="download-card-content">
                     <h2>Item Title 4</h2>
                     <p class="download-card-description">Version 1.0.0</p>
                 </div>
-                <a class="download-button" href="#">
-                    <span>Download</span>
-                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                </a>
+                <button class="download-button" type="button" disabled>Download unavailable</button>
             </article>
 
             <article class="download-card">
-                <img src="download 5.jpg" alt="Download 5 Thumbnail" class="card-thumb">
                 <div class="download-card-content">
                     <h2>Item Title 5</h2>
                     <p class="download-card-description">Version 1.0.0</p>
                 </div>
-                <a class="download-button" href="#">
-                    <span>Download</span>
-                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                </a>
+                <button class="download-button" type="button" disabled>Download unavailable</button>
             </article>
 
             <article class="download-card">
-                <img src="download 6.jpg" alt="Download 6 Thumbnail" class="card-thumb">
                 <div class="download-card-content">
                     <h2>Item Title 6</h2>
                     <p class="download-card-description">Version 1.0.0</p>
                 </div>
-                <a class="download-button" href="#">
-                    <span>Download</span>
-                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                </a>
+                <button class="download-button" type="button" disabled>Download unavailable</button>
             </article>
 
             <article class="download-card">
-                <img src="download 7.jpg" alt="Download 7 Thumbnail" class="card-thumb">
                 <div class="download-card-content">
                     <h2>Item Title 7</h2>
                     <p class="download-card-description">Version 1.0.0</p>
                 </div>
-                <a class="download-button" href="#">
-                    <span>Download</span>
-                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                </a>
+                <button class="download-button" type="button" disabled>Download unavailable</button>
             </article>
 
             <article class="download-card">
-                <img src="download 8.jpg" alt="Download 8 Thumbnail" class="card-thumb">
                 <div class="download-card-content">
                     <h2>Item Title 8</h2>
                     <p class="download-card-description">Version 1.0.0</p>
                 </div>
-                <a class="download-button" href="#">
-                    <span>Download</span>
-                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                </a>
+                <button class="download-button" type="button" disabled>Download unavailable</button>
             </article>
 
             <article class="download-card">
-                <img src="download 9.jpg" alt="Download 9 Thumbnail" class="card-thumb">
                 <div class="download-card-content">
                     <h2>Item Title 9</h2>
                     <p class="download-card-description">Version 1.0.0</p>
                 </div>
-                <a class="download-button" href="#">
-                    <span>Download</span>
-                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                </a>
+                <button class="download-button" type="button" disabled>Download unavailable</button>
             </article>
         </div>
     </section>
@@ -359,7 +323,7 @@
                     <i class="fas fa-chevron-right" aria-hidden="true"></i>
                 </button>
                 <button id="faqTabProfile" class="faq-topic" type="button" role="tab"
-                    aria-selected="false" aria-controls="faqPanelProfile" tabindex="-.1" data-faq-tab="faqPanelProfile">
+                    aria-selected="false" aria-controls="faqPanelProfile" tabindex="-1" data-faq-tab="faqPanelProfile">
                     <span>Profile &amp; socials</span>
                     <i class="fas fa-chevron-right" aria-hidden="true"></i>
                 </button>
@@ -375,9 +339,9 @@
                     <p class="faq-panel-kicker">DOWNLOADS</p>
                     <h2>How to Download file ?</h2>
                     <ol class="faq-steps">
-                        <li><div class="faq-step-content"><span>Open <strong>Profile</strong>.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
-                        <li><div class="faq-step-content"><span>Press play.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
-                        <li><div class="faq-step-content"><span>Choose a track or adjust the volume.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
+                        <li><div class="faq-step-content"><span>Open <strong>Profile</strong>.</span></div></li>
+                        <li><div class="faq-step-content"><span>Press play.</span></div></li>
+                        <li><div class="faq-step-content"><span>Choose a track or adjust the volume.</span></div></li>
                     </ol>
                 </article>
 
@@ -385,9 +349,9 @@
                     <p class="faq-panel-kicker">SITE NAVIGATION</p>
                     <h2>How do I navigate the profile?</h2>
                     <ol class="faq-steps">
-                        <li><div class="faq-step-content"><span>Open the menu.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
-                        <li><div class="faq-step-content"><span>Select a page.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
-                        <li><div class="faq-step-content"><span>Close the menu when finished.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
+                        <li><div class="faq-step-content"><span>Open the menu.</span></div></li>
+                        <li><div class="faq-step-content"><span>Select a page.</span></div></li>
+                        <li><div class="faq-step-content"><span>Close the menu when finished.</span></div></li>
                     </ol>
                 </article>
 
@@ -395,9 +359,9 @@
                     <p class="faq-panel-kicker">BACKGROUND</p>
                     <h2>How do the background videos work?</h2>
                     <ol class="faq-steps">
-                        <li><div class="faq-step-content"><span>The background video starts automatically.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
-                        <li><div class="faq-step-content"><span>Wait for the background to play.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
-                        <li><div class="faq-step-content"><span>The video changes automatically.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
+                        <li><div class="faq-step-content"><span>The background video starts automatically.</span></div></li>
+                        <li><div class="faq-step-content"><span>Wait for the background to play.</span></div></li>
+                        <li><div class="faq-step-content"><span>The video changes automatically.</span></div></li>
                     </ol>
                 </article>
 
@@ -405,9 +369,9 @@
                     <p class="faq-panel-kicker">DOWNLOADS</p>
                     <h2>Where can I find downloads?</h2>
                     <ol class="faq-steps">
-                        <li><div class="faq-step-content"><span>Open the menu and select <strong>Download</strong>.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
-                        <li><div class="faq-step-content"><span>Find a file.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
-                        <li><div class="faq-step-content"><span>Select its link.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
+                        <li><div class="faq-step-content"><span>Open the menu and select <strong>Download</strong>.</span></div></li>
+                        <li><div class="faq-step-content"><span>Find a file.</span></div></li>
+                        <li><div class="faq-step-content"><span>Select its link.</span></div></li>
                     </ol>
                 </article>
 
@@ -415,9 +379,9 @@
                     <p class="faq-panel-kicker">PROFILE</p>
                     <h2>How do I view the profile and social links?</h2>
                     <ol class="faq-steps">
-                        <li><div class="faq-step-content"><span>Open <strong>Profile</strong>.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
-                        <li><div class="faq-step-content"><span>Review the profile and social links.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
-                        <li><div class="faq-step-content"><span>Select a social link.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
+                        <li><div class="faq-step-content"><span>Open <strong>Profile</strong>.</span></div></li>
+                        <li><div class="faq-step-content"><span>Review the profile and social links.</span></div></li>
+                        <li><div class="faq-step-content"><span>Select a social link.</span></div></li>
                     </ol>
                 </article>
 
@@ -425,9 +389,9 @@
                     <p class="faq-panel-kicker">AUDIO CONTROLS</p>
                     <h2>How do I adjust or mute the music?</h2>
                     <ol class="faq-steps">
-                        <li><div class="faq-step-content"><span>Move the volume slider.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
-                        <li><div class="faq-step-content"><span>Press the speaker button to mute or unmute.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
-                        <li><div class="faq-step-content"><span>Use play to pause or resume.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
+                        <li><div class="faq-step-content"><span>Move the volume slider.</span></div></li>
+                        <li><div class="faq-step-content"><span>Press the speaker button to mute or unmute.</span></div></li>
+                        <li><div class="faq-step-content"><span>Use play to pause or resume.</span></div></li>
                     </ol>
                 </article>
             </div>
