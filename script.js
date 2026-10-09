@@ -20,7 +20,6 @@ const audioFiles = [
         audio.preload = 'metadata';
         audio.loop = false;
 
-        const entryOverlay = document.getElementById('entryOverlay');
         const profileContent = document.getElementById('profileContent');
         const menuButton = document.getElementById('menuButton');
         const drawerBackdrop = document.getElementById('drawerBackdrop');
@@ -44,7 +43,6 @@ const audioFiles = [
         const trackCover = document.getElementById('trackCover');
         let currentTrackIndex = Math.floor(Math.random() * playlist.length);
         let coverLoadToken = 0;
-        let hasEntered = false;
         let previousVolume = Number(volumeSlider.value);
         let activeVideo = document.getElementById('backgroundVideo');
         let standbyVideo = document.getElementById('nextBackgroundVideo');
@@ -363,7 +361,7 @@ const audioFiles = [
         };
 
         const startPlayback = async () => {
-            if (!hasEntered || !audio.paused) return;
+            if (!audio.paused) return;
             try {
                 await audio.play();
             } catch (error) {
@@ -431,18 +429,3 @@ const audioFiles = [
                 setDrawerOpen(false);
             }
         });
-
-        entryOverlay.addEventListener('click', async () => {
-            hasEntered = true;
-            document.body.classList.add('has-entered');
-            entryOverlay.classList.add('opacity-0', 'pointer-events-none');
-            profileContent.classList.add('profile-entering');
-            profileContent.classList.remove('opacity-0', 'invisible');
-            void startPlayback();
-            try {
-                if (activeVideo.paused) await activeVideo.play();
-            } catch (error) {
-                markActiveVideoFailed(activeVideo, error);
-            }
-            window.setTimeout(() => entryOverlay.remove(), 500);
-        }, { once: true });

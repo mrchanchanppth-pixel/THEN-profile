@@ -17,13 +17,27 @@
 <body class="min-h-screen flex items-center justify-center text-white p-4 sm:p-8 antialiased isolate">
     <video id="backgroundVideo" class="background-video is-active" muted playsinline preload="metadata" aria-hidden="true"></video>
     <video id="nextBackgroundVideo" class="background-video" muted playsinline preload="metadata" aria-hidden="true"></video>
-    <div class="bg-overlay"></div>
 
     <button id="menuButton" type="button" class="menu-button" aria-label="Open navigation menu" aria-controls="sideDrawer" aria-expanded="false">
         <span class="menu-bar" aria-hidden="true"></span>
         <span class="menu-bar" aria-hidden="true"></span>
         <span class="menu-bar" aria-hidden="true"></span>
     </button>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+        <a class="desktop-nav-link" href="#profileContent">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            <span>Profile</span>
+        </a>
+        <a class="desktop-nav-link" href="#download">
+            <i class="fas fa-download" aria-hidden="true"></i>
+            <span>Download</span>
+        </a>
+        <a class="desktop-nav-link" href="#faq">
+            <i class="fas fa-circle-question" aria-hidden="true"></i>
+            <span>FAQ</span>
+        </a>
+    </nav>
 
     <div id="drawerBackdrop" class="drawer-backdrop" aria-hidden="true"></div>
     <aside id="sideDrawer" class="side-drawer" aria-label="Navigation menu" aria-hidden="true">
@@ -59,12 +73,8 @@
         <p class="drawer-footer">Made with love · 2026</p>
     </aside>
 
-    <button id="entryOverlay" type="button" class="fixed inset-0 z-50 flex w-full items-center justify-center border-0 bg-black/80 p-0 text-white backdrop-blur-xl transition-opacity duration-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white/80">
-        <span class="text-lg font-semibold tracking-wide">Click to Enter...</span>
-    </button>
-
     <!-- Main Container: compact, centered, and narrow like a mobile card -->
-    <main id="profileContent" class="route-page is-active w-full max-w-[300px] mx-auto flex flex-col items-center gap-3 relative z-10 opacity-0 invisible" tabindex="-1">
+    <main id="profileContent" class="route-page is-active profile-entering w-full max-w-[300px] mx-auto flex flex-col items-center gap-3 relative z-10" tabindex="-1">
         
         <!-- Top Section: compact centered layout for profile and socials -->
         <div class="flex flex-col gap-3 w-full items-center justify-center">
@@ -196,32 +206,100 @@
         </div>
     </main>
 
-    <section id="download" class="route-page destination-page" aria-labelledby="downloadTitle" tabindex="-1">
+    <section id="download" class="route-page destination-page download-page" aria-labelledby="downloadTitle" tabindex="-1">
         <header class="download-header">
             <p class="faq-eyebrow">DOWNLOAD CENTER</p>
             <h1 id="downloadTitle" class="destination-title">
                 <i class="fas fa-download" aria-hidden="true"></i>
                 Downloads
             </h1>
-            <p class="destination-copy">Choose a file below to download.</p>
+            <p class="destination-copy">Select an item to download.</p>
         </header>
-        <article class="download-card">
-            <div class="download-card-icon" aria-hidden="true">
-                <i class="fas fa-box-archive"></i>
-            </div>
-            <div class="download-card-content">
-                <p class="download-card-label">WINDOWS APPLICATION</p>
-                <h2>Discord Quest Completer</h2>
-                <p class="download-card-description">Support Windows 10/11 64-bit</p>
-                <p class="download-file-name">Discord Quest Completer</p>
-            </div>
-            <a class="download-button"
-                href="https://github.com/markterence/discord-quest-completer/releases/tag/2025.10.07"
-                target="_blank" rel="noopener noreferrer" aria-label="Download Discord Quest Completer for Windows 64-bit">
-                <span>Download</span>
-                <i class="fas fa-arrow-down" aria-hidden="true"></i>
-            </a>
-        </article>
+        <div class="download-grid" aria-label="Available downloads">
+            <article class="download-card">
+                <div class="download-card-icon" aria-hidden="true">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <div class="download-card-content">
+                    <h2>Item Title 2</h2>
+                    <p class="download-card-description">Version 1.0.0</p>
+                </div>
+                <a class="download-button" href="#">
+                    <span>Download</span>
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </article>
+
+            <article class="download-card">
+                <div class="download-card-icon" aria-hidden="true">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <div class="download-card-content">
+                    <h2>Item Title 1</h2>
+                    <p class="download-card-description">Version 1.0.0</p>
+                </div>
+                <a class="download-button" href="#">
+                    <span>Download</span>
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </article>
+
+            <article class="download-card">
+                <div class="download-card-icon" aria-hidden="true">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <div class="download-card-content">
+                    <h2>Item Title 3</h2>
+                    <p class="download-card-description">Version 1.0.0</p>
+                </div>
+                <a class="download-button" href="#">
+                    <span>Download</span>
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </article>
+
+            <article class="download-card">
+                <div class="download-card-icon" aria-hidden="true">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <div class="download-card-content">
+                    <h2>Item Title 4</h2>
+                    <p class="download-card-description">Version 1.0.0</p>
+                </div>
+                <a class="download-button" href="#">
+                    <span>Download</span>
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </article>
+
+            <article class="download-card">
+                <div class="download-card-icon" aria-hidden="true">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <div class="download-card-content">
+                    <h2>Item Title 5</h2>
+                    <p class="download-card-description">Version 1.0.0</p>
+                </div>
+                <a class="download-button" href="#">
+                    <span>Download</span>
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </article>
+
+            <article class="download-card">
+                <div class="download-card-icon" aria-hidden="true">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <div class="download-card-content">
+                    <h2>Item Title 6</h2>
+                    <p class="download-card-description">Version 1.0.0</p>
+                </div>
+                <a class="download-button" href="#">
+                    <span>Download</span>
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </article>
+        </div>
     </section>
 
     <section id="faq" class="route-page destination-page faq-page" aria-labelledby="faqTitle" tabindex="-1">
@@ -238,37 +316,31 @@
             <nav class="faq-topics" role="tablist" aria-label="FAQ topics" aria-orientation="vertical">
                 <button id="faqTabMusic" class="faq-topic is-active" type="button" role="tab"
                     aria-selected="true" aria-controls="faqPanelMusic" tabindex="0" data-faq-tab="faqPanelMusic">
-                    <span class="faq-topic-number" aria-hidden="true">.</span>
                     <span>Download</span>
                     <i class="fas fa-chevron-right" aria-hidden="true"></i>
                 </button>
                 <button id="faqTabNavigation" class="faq-topic" type="button" role="tab"
                     aria-selected="false" aria-controls="faqPanelNavigation" tabindex="-1" data-faq-tab="faqPanelNavigation">
-                    <span class="faq-topic-number" aria-hidden="true">.</span>
                     <span>Navigate the profile</span>
                     <i class="fas fa-chevron-right" aria-hidden="true"></i>
                 </button>
                 <button id="faqTabBackground" class="faq-topic" type="button" role="tab"
                     aria-selected="false" aria-controls="faqPanelBackground" tabindex="-1" data-faq-tab="faqPanelBackground">
-                    <span class="faq-topic-number" aria-hidden="true">.</span>
                     <span>Background videos</span>
                     <i class="fas fa-chevron-right" aria-hidden="true"></i>
                 </button>
                 <button id="faqTabDownloads" class="faq-topic" type="button" role="tab"
                     aria-selected="false" aria-controls="faqPanelDownloads" tabindex="-1" data-faq-tab="faqPanelDownloads">
-                    <span class="faq-topic-number" aria-hidden="true">.</span>
                     <span>Find downloads</span>
                     <i class="fas fa-chevron-right" aria-hidden="true"></i>
                 </button>
                 <button id="faqTabProfile" class="faq-topic" type="button" role="tab"
                     aria-selected="false" aria-controls="faqPanelProfile" tabindex="-.1" data-faq-tab="faqPanelProfile">
-                    <span class="faq-topic-number" aria-hidden="true">.</span>
                     <span>Profile &amp; socials</span>
                     <i class="fas fa-chevron-right" aria-hidden="true"></i>
                 </button>
                 <button id="faqTabVolume" class="faq-topic" type="button" role="tab"
                     aria-selected="false" aria-controls="faqPanelVolume" tabindex="-1" data-faq-tab="faqPanelVolume">
-                    <span class="faq-topic-number" aria-hidden="true">.</span>
                     <span>Adjust volume</span>
                     <i class="fas fa-chevron-right" aria-hidden="true"></i>
                 </button>
@@ -299,7 +371,7 @@
                     <p class="faq-panel-kicker">BACKGROUND</p>
                     <h2>How do the background videos work?</h2>
                     <ol class="faq-steps">
-                        <li><div class="faq-step-content"><span>Select <strong>Click to Enter</strong>.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
+                        <li><div class="faq-step-content"><span>The background video starts automatically.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
                         <li><div class="faq-step-content"><span>Wait for the background to play.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
                         <li><div class="faq-step-content"><span>The video changes automatically.</span><img class="faq-screenshot-image" src="placeholder.jpg" alt="step screenshot"></div></li>
                     </ol>

@@ -26,20 +26,59 @@ body {
             opacity: 1;
         }
 
-        /* Subtle overlay to ensure readability without a main container */
-        .bg-overlay {
+        .desktop-nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.3); /* Lighter overlay to show more background */
-            z-index: 1;
-            transition: opacity 900ms ease;
+            top: max(1.25rem, env(safe-area-inset-top));
+            left: max(0px, env(safe-area-inset-left));
+            z-index: 60;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 8px;
+            margin-left: 20px;
+            padding: 0;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
         }
 
-        body.has-entered .bg-overlay {
-            opacity: 0;
+        .desktop-nav-link {
+            display: inline-flex;
+            min-height: 0;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            padding: 6px 12px;
+            border: 1px solid transparent;
+            border-radius: 0.5rem;
+            background: transparent;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 250ms ease, background-color 250ms ease, border-color 250ms ease,
+                backdrop-filter 250ms ease, transform 250ms ease;
+        }
+
+        .desktop-nav-link:hover {
+            transform: translateY(-1px);
+            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.25);
+            color: #fff;
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+        }
+
+        .desktop-nav-link:active {
+            transform: scale(0.97);
+        }
+
+        .desktop-nav-link:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
         }
 
         .menu-button {
@@ -47,7 +86,7 @@ body {
             top: max(1rem, env(safe-area-inset-top));
             left: max(1rem, env(safe-area-inset-left));
             z-index: 60;
-            display: flex;
+            display: none;
             width: 3rem;
             height: 3rem;
             align-items: center;
@@ -258,6 +297,19 @@ body {
             outline: none;
         }
 
+        .download-page {
+            width: min(100%, 72rem);
+            max-height: calc(100dvh - 2rem);
+            gap: 1.75rem;
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+        }
+
         .destination-title {
             display: flex;
             align-items: center;
@@ -283,24 +335,66 @@ body {
         .download-header {
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 0.6rem;
+            text-align: center;
+        }
+
+        .download-header .faq-eyebrow {
+            font-size: 0.78rem;
+            letter-spacing: 0.2em;
+        }
+
+        .download-header .destination-title {
+            justify-content: center;
+            font-size: clamp(2rem, 4vw, 2.25rem);
+            font-weight: 700;
+            letter-spacing: 0.01em;
+        }
+
+        .download-header .destination-title i {
+            font-size: 1.4rem;
+        }
+
+        .download-header .destination-copy {
+            font-size: 1rem;
+            letter-spacing: 0.015em;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.25rem;
         }
 
         .download-card {
             display: grid;
-            grid-template-columns: auto minmax(0, 1fr) auto;
-            align-items: center;
+            grid-template-columns: auto minmax(0, 1fr);
+            grid-template-rows: auto 1fr auto;
+            align-items: start;
+            min-width: 0;
+            min-height: 13rem;
             gap: 1rem;
             padding: 1.25rem;
-            border: 1px solid rgba(255, 255, 255, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 1rem;
-            background: rgba(255, 255, 255, 0.06);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+            background: rgba(18, 18, 20, 0.65);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.035);
             -webkit-backdrop-filter: blur(12px);
             backdrop-filter: blur(12px);
+            transition: transform 200ms ease, border-color 200ms ease, background-color 200ms ease, box-shadow 200ms ease;
+        }
+
+        .download-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(35, 35, 40, 0.72);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.24), 0 0 24px rgba(255, 255, 255, 0.1);
         }
 
         .download-card-icon {
+            grid-column: 1;
+            grid-row: 1;
             display: grid;
             width: 3.25rem;
             height: 3.25rem;
@@ -313,15 +407,9 @@ body {
         }
 
         .download-card-content {
+            grid-column: 2;
+            grid-row: 1;
             min-width: 0;
-        }
-
-        .download-card-label {
-            margin: 0 0 0.35rem;
-            color: rgba(216, 180, 254, 0.88);
-            font-size: 0.63rem;
-            font-weight: 700;
-            letter-spacing: 0.14em;
         }
 
         .download-card h2 {
@@ -332,24 +420,19 @@ body {
         }
 
         .download-card-description {
-            margin: 0.35rem 0 0;
+            margin: 0.5rem 0 0;
             color: rgba(255, 255, 255, 0.7);
             font-size: 0.82rem;
         }
 
-        .download-file-name {
-            overflow-wrap: anywhere;
-            margin: 0.55rem 0 0;
-            color: rgba(255, 255, 255, 0.44);
-            font-family: monospace;
-            font-size: 0.68rem;
-        }
-
         .download-button {
+            grid-column: 2;
+            grid-row: 3;
             display: inline-flex;
             min-height: 2.75rem;
             align-items: center;
             justify-content: center;
+            justify-self: end;
             gap: 0.6rem;
             padding: 0.7rem 1rem;
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -359,13 +442,19 @@ body {
             font-size: 0.82rem;
             font-weight: 700;
             text-decoration: none;
-            transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+            white-space: nowrap;
+            transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
         }
 
         .download-button:hover {
-            transform: translateY(-1px);
-            border-color: rgba(216, 180, 254, 0.5);
-            background: rgba(216, 180, 254, 0.25);
+            transform: translateY(-2px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(216, 180, 254, 0.24);
+            box-shadow: 0 0 18px rgba(255, 255, 255, 0.12);
+        }
+
+        .download-button:active {
+            transform: scale(0.97);
         }
 
         .download-button:focus-visible {
@@ -378,39 +467,48 @@ body {
             max-height: calc(100dvh - 2rem);
             gap: 1.75rem;
             padding: clamp(1.25rem, 3vw, 2.25rem);
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(18, 18, 20, 0.42);
-            -webkit-backdrop-filter: blur(18px);
-            backdrop-filter: blur(18px);
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
         }
 
         .faq-header {
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 0.6rem;
+            text-align: center;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
         }
 
-        .faq-eyebrow,
+        .faq-header .faq-eyebrow,
         .faq-panel-kicker {
             margin: 0;
-            color: rgba(242, 240, 245, 0.9);
+            color: #fff;
             font-size: 0.68rem;
             font-weight: 700;
-            letter-spacing: 0.16em;
+            letter-spacing: 0.18em;
         }
 
         .faq-header .destination-title {
+            justify-content: center;
             font-size: clamp(1.35rem, 3vw, 1.8rem);
+            font-weight: 700;
         }
 
         .faq-header .destination-copy {
             font-size: 0.9rem;
+            font-weight: 600;
+            color: #fff;
         }
 
         .faq-layout {
             display: grid;
             grid-template-columns: minmax(14rem, 0.32fr) minmax(0, 1fr);
-            gap: clamp(1.25rem, 3vw, 2.5rem);
+            gap: 0.75rem;
             min-height: min(36rem, 58vh);
         }
 
@@ -419,40 +517,46 @@ body {
             flex-direction: column;
             gap: 0.55rem;
             align-self: start;
-            padding-right: 1.1rem;
+            padding: 0 1.25rem 0 0.25rem;
             border-right: 1px solid rgba(255, 255, 255, 0.12);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
         }
 
         .faq-topic {
             display: grid;
-            grid-template-columns: 2rem minmax(0, 1fr) auto;
+            grid-template-columns: minmax(0, 1fr) auto;
             align-items: center;
             gap: 0.55rem;
             min-height: 3.4rem;
             padding: 0.8rem 0.85rem;
-            border: 1px solid transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 0.75rem;
-            background: transparent;
-            color: rgba(255, 255, 255, 0.76);
+            background: rgba(18, 18, 22, 0.75);
+            color: #fff;
             cursor: pointer;
             font: inherit;
             font-size: 0.84rem;
-            font-weight: 600;
+            font-weight: 700;
             text-align: left;
-            transition: color 200ms ease, background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            transition: all 0.2s ease-in-out;
         }
 
-        .faq-topic:hover,
-        .faq-topic.is-active {
+        .faq-topic:hover:not(.is-active) {
             transform: translateX(2px);
-            border-color: rgba(216, 180, 254, 0.24);
-            background: rgba(216, 180, 254, 0.1);
-            box-shadow: 0 0 22px rgba(168, 85, 247, 0.1), inset 0 0 16px rgba(255, 255, 255, 0.025);
-            color: #fff;
+            border-color: rgba(255, 255, 255, 0.9);
+            background: #fff;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            color: #000;
         }
 
         .faq-topic.is-active {
-            border-left-color: rgba(248, 246, 250, 0.8);
+            border-color: rgba(255, 255, 255, 0.2);
+            border-left-color: rgba(255, 255, 255, 0.72);
+            background: rgba(24, 24, 30, 0.92);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), inset 0 0 16px rgba(255, 255, 255, 0.025);
+            color: #fff;
         }
 
         .faq-topic:focus-visible {
@@ -460,27 +564,25 @@ body {
             outline-offset: 2px;
         }
 
-        .faq-topic-number {
-            color: rgba(247, 246, 248, 0.78);
-            font-size: 1.4rem;
-            line-height: 0.5;
-            text-align: center;
+        .faq-topic > i {
+            color: rgba(255, 255, 255, 0.82);
+            font-size: 0.65rem;
         }
 
-        .faq-topic > i {
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.65rem;
+        .faq-topic:hover:not(.is-active) > i {
+            color: #000;
         }
 
         .faq-content {
             min-width: 0;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
         }
 
         .faq-panel {
             padding: clamp(1rem, 2.5vw, 1.5rem);
             border: 1px solid rgba(255, 255, 255, 0.16);
             border-radius: 1rem;
-            background: rgba(8, 10, 18, 0.38);
+            background: rgba(8, 10, 18, 0.68);
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
             -webkit-backdrop-filter: blur(12px);
             backdrop-filter: blur(12px);
@@ -499,13 +601,18 @@ body {
             line-height: 1.3;
         }
 
+        .faq-panel-kicker {
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
         .faq-steps {
             display: flex;
             flex-direction: column;
             gap: 1rem;
             margin: 1.25rem 0 0;
             padding: 0;
-            color: rgba(255, 255, 255, 0.8);
+            color: #fff;
+            font-weight: 600;
             list-style: none;
             counter-reset: faq-step;
         }
@@ -516,7 +623,8 @@ body {
             align-items: start;
             gap: 0.65rem;
             counter-increment: faq-step;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            font-weight: 600;
             line-height: 1.6;
         }
 
@@ -551,10 +659,10 @@ body {
             width: 100%;
             max-height: 18rem;
             aspect-ratio: 16 / 9;
-            border: 1px dashed rgba(255, 255, 255, 0.22);
+            border: 1px solid rgba(255, 255, 255, 0.14);
             border-radius: 0.75rem;
-            background: rgba(255, 255, 255, 0.045);
-            color: rgba(255, 255, 255, 0.54);
+            background: rgba(8, 10, 18, 0.24);
+            color: rgba(255, 255, 255, 0.8);
             object-fit: contain;
         }
 
@@ -564,14 +672,19 @@ body {
         }
 
         @media (max-width: 640px) {
-            .download-card {
-                grid-template-columns: auto minmax(0, 1fr);
-                padding: 1rem;
+            .download-page {
+                max-height: calc(100dvh - 1.5rem);
+                gap: 1.25rem;
+                padding: 1.15rem;
             }
 
-            .download-button {
-                grid-column: 1 / -1;
-                width: 100%;
+            .download-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .download-card {
+                min-height: 11rem;
+                padding: 1rem;
             }
 
             .faq-page {
@@ -596,7 +709,7 @@ body {
             }
 
             .faq-topic {
-                grid-template-columns: auto minmax(0, 1fr);
+                grid-template-columns: minmax(0, 1fr);
                 gap: 0.45rem;
                 min-height: 3rem;
                 padding: 0.6rem;
@@ -609,6 +722,30 @@ body {
 
             .faq-panel {
                 padding: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+
+            .menu-button {
+                display: flex;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 900px) {
+            .download-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .download-card,
+            .download-button,
+            .desktop-nav-link {
+                transition-duration: 1ms;
             }
         }
 
@@ -672,8 +809,7 @@ body {
                 animation: none !important;
             }
 
-            .background-video,
-            .bg-overlay {
+            .background-video {
                 transition-duration: 1ms;
             }
         }
