@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website • | 𝐓 𝐇 𝐄 𝐍</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Kantumruy+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="Photo/umn.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="min-h-screen flex items-center justify-center text-white p-4 sm:p-8 antialiased isolate">
+    <video id="backgroundVideo" class="background-video is-active" muted playsinline preload="metadata" aria-hidden="true"></video>
+    <video id="nextBackgroundVideo" class="background-video" muted playsinline preload="metadata" aria-hidden="true"></video>
+
+    <button id="menuButton" type="button" class="menu-button" aria-label="Open navigation menu" aria-controls="sideDrawer" aria-expanded="false">
+        <span class="menu-bar" aria-hidden="true"></span>
+        <span class="menu-bar" aria-hidden="true"></span>
+        <span class="menu-bar" aria-hidden="true"></span>
+    </button>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+        <div class="desktop-nav-indicator" id="desktopNavIndicator" aria-hidden="true"></div>
+        <a class="desktop-nav-link" href="index.html#profileContent">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            <span>Profile</span>
+        </a>
+        <a class="desktop-nav-link is-active" href="website.html" aria-current="page">
+            <i class="fas fa-globe" aria-hidden="true"></i>
+            <span>Website</span>
+        </a>
+        <a class="desktop-nav-link" href="index.html#faq">
+            <i class="fas fa-circle-question" aria-hidden="true"></i>
+            <span>FAQ</span>
+        </a>
+    </nav>
+
+    <div id="drawerBackdrop" class="drawer-backdrop" aria-hidden="true"></div>
+    <aside id="sideDrawer" class="side-drawer" aria-label="Navigation menu" aria-hidden="true" inert>
+        <div class="drawer-header">
+            <span class="drawer-title">Menu</span>
+            <button id="drawerClose" type="button" class="drawer-close" aria-label="Close navigation menu">
+                <i class="fas fa-xmark text-sm" aria-hidden="true"></i>
+            </button>
+        </div>
+        <nav class="drawer-nav" aria-label="Main navigation">
+            <a class="drawer-link" href="index.html#profileContent">
+                <span class="drawer-link-label">
+                    <i class="fas fa-user drawer-link-icon" aria-hidden="true"></i>
+                    <span>Profile</span>
+                </span>
+                <i class="fas fa-arrow-right drawer-link-arrow" aria-hidden="true"></i>
+            </a>
+            <a class="drawer-link is-active" href="website.html" aria-current="page">
+                <span class="drawer-link-label">
+                    <i class="fas fa-globe drawer-link-icon" aria-hidden="true"></i>
+                    <span>Website</span>
+                </span>
+                <i class="fas fa-arrow-right drawer-link-arrow" aria-hidden="true"></i>
+            </a>
+            <a class="drawer-link" href="index.html#faq">
+                <span class="drawer-link-label">
+                    <i class="fas fa-circle-question drawer-link-icon" aria-hidden="true"></i>
+                    <span>FAQ</span>
+                </span>
+                <i class="fas fa-arrow-right drawer-link-arrow" aria-hidden="true"></i>
+            </a>
+        </nav>
+        <p class="drawer-footer">Made with love · 2026</p>
+    </aside>
+
+    <!-- Main Clean Container: Frosted glass card ready for custom content -->
+    <main class="destination-page glass-card w-full max-w-xl mx-auto flex flex-col items-center justify-center p-6 sm:p-10 text-center relative z-10 page-animate-in">
+        <header class="flex flex-col items-center gap-2 mb-6">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center bg-white/10 border border-white/20 text-purple-300 text-2xl shadow-lg backdrop-blur-md mb-2">
+                <i class="fas fa-globe" aria-hidden="true"></i>
+            </div>
+            <p class="text-xs font-bold tracking-widest text-purple-400 uppercase">WEBSITE</p>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Website</h1>
+            <p class="text-sm text-gray-300 max-w-md">This page is clean and ready for your content.</p>
+        </header>
+
+        <!-- Clean empty section for user content -->
+        <section class="w-full min-h-[160px] flex items-center justify-center rounded-2xl border border-dashed border-white/15 p-6 bg-white/[0.02]">
+            <p class="text-xs text-white/40 tracking-wider uppercase font-medium">Ready for your content</p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

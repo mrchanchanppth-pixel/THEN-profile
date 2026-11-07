@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>• | 𝐓 𝐇 𝐄 𝐍</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Kantumruy+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="Photo/umn.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="min-h-screen flex items-center justify-center text-white p-4 sm:p-8 antialiased isolate">
+    <video id="backgroundVideo" class="background-video is-active" muted playsinline preload="metadata" aria-hidden="true"></video>
+    <video id="nextBackgroundVideo" class="background-video" muted playsinline preload="metadata" aria-hidden="true"></video>
+
+    <button id="menuButton" type="button" class="menu-button" aria-label="Open navigation menu" aria-controls="sideDrawer" aria-expanded="false">
+        <span class="menu-bar" aria-hidden="true"></span>
+        <span class="menu-bar" aria-hidden="true"></span>
+        <span class="menu-bar" aria-hidden="true"></span>
+    </button>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+        <div class="desktop-nav-indicator" id="desktopNavIndicator" aria-hidden="true"></div>
+        <a class="desktop-nav-link" href="#profileContent" data-route="profileContent">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            <span>Profile</span>
+        </a>
+        <a class="desktop-nav-link" href="website.html">
+            <i class="fas fa-globe" aria-hidden="true"></i>
+            <span>Website</span>
+        </a>
+        <a class="desktop-nav-link" href="#faq" data-route="faq">
+            <i class="fas fa-circle-question" aria-hidden="true"></i>
+            <span>FAQ</span>
+        </a>
+    </nav>
+
+    <div id="drawerBackdrop" class="drawer-backdrop" aria-hidden="true"></div>
+    <aside id="sideDrawer" class="side-drawer" aria-label="Navigation menu" aria-hidden="true" inert>
+        <div class="drawer-header">
+            <span class="drawer-title">Menu</span>
+            <button id="drawerClose" type="button" class="drawer-close" aria-label="Close navigation menu">
+                <i class="fas fa-xmark text-sm" aria-hidden="true"></i>
+            </button>
+        </div>
+        <nav class="drawer-nav" aria-label="Main navigation">
+            <a class="drawer-link" href="#profileContent" data-route="profileContent">
+                <span class="drawer-link-label">
+                    <i class="fas fa-user drawer-link-icon" aria-hidden="true"></i>
+                    <span>Profile</span>
+                </span>
+                <i class="fas fa-arrow-right drawer-link-arrow" aria-hidden="true"></i>
+            </a>
+            <a class="drawer-link" href="website.html">
+                <span class="drawer-link-label">
+                    <i class="fas fa-globe drawer-link-icon" aria-hidden="true"></i>
+                    <span>Website</span>
+                </span>
+                <i class="fas fa-arrow-right drawer-link-arrow" aria-hidden="true"></i>
+            </a>
+            <a class="drawer-link" href="#faq" data-route="faq">
+                <span class="drawer-link-label">
+                    <i class="fas fa-circle-question drawer-link-icon" aria-hidden="true"></i>
+                    <span>FAQ</span>
+                </span>
+                <i class="fas fa-arrow-right drawer-link-arrow" aria-hidden="true"></i>
+            </a>
+        </nav>
+        <p class="drawer-footer">Made with love · 2026</p>
+    </aside>
+
+    <!-- Main Container: compact, centered, and narrow like a mobile card -->
+    <main id="profileContent" class="route-page is-active profile-entering w-full max-w-[300px] mx-auto flex flex-col items-center gap-3 relative z-10" tabindex="-1">
+        
+        <!-- Top Section: compact centered layout for profile and socials -->
+        <div class="flex flex-col gap-3 w-full items-center justify-center">
+            
+            <div class="flex flex-col items-center justify-center w-full text-center">
+                <div class="profile-avatar relative group mb-2">
+                    <!-- Avatar without a colored outline -->
+                    <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden bg-zinc-900 flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
+                        <!-- Local profile image -->
+                        <img src="Photo/Sadmes.jpg" 
+                             alt="Profile Picture" 
+                             class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Name with a cycling color glow -->
+                <h1 class="profile-name text-2xl sm:text-3xl font-extrabold mb-1 tracking-wider uppercase">
+                    • | 𝐓 𝐇 𝐄 𝐍
+                </h1>
+                
+                <p class="text-gray-100 font-medium text-xs sm:text-sm drop-shadow-md tracking-wide mt-0.5">
+                    歡迎, <span class="text-[11px] sm:text-xs">我真的很愛你</span>
+                </p>
+                
+            </div>
+
+            <div class="flex flex-col items-center gap-2 w-full">
+                
+                <!-- Facebook Link -->
+                <a href="https://www.facebook.com/share/19VE3HKFjo/" target="_blank" rel="noopener noreferrer" class="social-link group flex items-center justify-between w-full rounded-lg cursor-pointer max-w-full">
+                    <div class="flex items-center gap-2">
+                        <div class="social-icon w-6 h-6 rounded-full flex items-center justify-center text-white group-hover:text-blue-400 transition-colors">
+                            <i class="fab fa-facebook-f text-xs"></i>
+                        </div>
+                        <span class="font-medium text-xs text-white">Facebook</span>
+                    </div>
+                    <span class="text-[10px] text-white/90 group-hover:text-white transition-colors">Thean Thean</span>
+                </a>
+
+                <!-- TikTok Link -->
+                <a href="https://www.tiktok.com/@thenyazd?_r=1&_t=ZS-9AICZQdNsrY" target="_blank" rel="noopener noreferrer" class="social-link group flex items-center justify-between w-full rounded-lg cursor-pointer max-w-full">
+                    <div class="flex items-center gap-2">
+                        <div class="social-icon w-6 h-6 rounded-full flex items-center justify-center text-white group-hover:text-white transition-colors">
+                            <i class="fab fa-tiktok text-xs"></i>
+                        </div>
+                        <span class="font-medium text-xs text-white">TikTok</span>
+                    </div>
+                    <span class="text-[10px] text-white/90 group-hover:text-white transition-colors">@thenyazd</span>
+                </a>
+
+                <!-- Instagram Link -->
+                <a href="https://www.instagram.com/chan_thean_/?utm_source=qr&r=nametag" target="_blank" rel="noopener noreferrer" class="social-link group flex items-center justify-between w-full rounded-lg cursor-pointer max-w-full">
+                    <div class="flex items-center gap-2">
+                        <div class="social-icon w-6 h-6 rounded-full flex items-center justify-center text-white group-hover:text-pink-400 transition-colors">
+                            <i class="fab fa-instagram text-xs"></i>
+                        </div>
+                        <span class="font-medium text-xs text-white">Instagram</span>
+                    </div>
+                    <span class="text-[10px] text-white/90 group-hover:text-white transition-colors">@chan_thean_</span>
+                </a>
+
+                <!-- Discord Link -->
+                <a href="https://discord.gg/dAajxSJWg" target="_blank" rel="noopener noreferrer" class="social-link group flex items-center justify-between w-full rounded-lg cursor-pointer max-w-full">
+                    <div class="flex items-center gap-2">
+                        <div class="social-icon w-6 h-6 rounded-full flex items-center justify-center text-white group-hover:text-indigo-300 transition-colors">
+                            <i class="fab fa-discord text-xs"></i>
+                        </div>
+                        <span class="font-medium text-xs text-white">Discord</span>
+                    </div>
+                    <span class="text-[10px] text-white/90 group-hover:text-white transition-colors">nhotjesdekte</span>
+                </a>
+
+                <!-- Roblox Link -->
+                <a href="https://www.roblox.com/users/4093332676/profile" target="_blank" rel="noopener noreferrer" class="social-link group flex items-center justify-between w-full rounded-lg cursor-pointer max-w-full">
+                    <div class="flex items-center gap-2">
+                        <div class="social-icon w-6 h-6 rounded-full flex items-center justify-center text-white transition-colors overflow-hidden">
+                            <img src="Photo/Roblox.jpg" alt="Roblox" class="roblox-icon" aria-label="Roblox logo" role="img">
+                        </div>
+                        <span class="font-medium text-xs text-white">Roblox</span>
+                    </div>
+                    <span class="text-[10px] text-white/90 group-hover:text-white transition-colors">fmnasgjkgf</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="w-full mt-3">
+            <!-- Compact music widget with translucent background -->
+            <div class="music-player w-full rounded-xl flex flex-col gap-2 transition-all duration-300">
+                <div class="flex items-center gap-1.5">
+                    <!-- Music Cover -->
+                    <div class="relative w-9 h-9 rounded-lg overflow-hidden flex-shrink-0 shadow-md">
+                        <img id="trackCover" src="Photo/Sadmes.jpg" class="w-full h-full object-cover" alt="Music cover">
+                    </div>
+
+                    <!-- Song Info & Progress Bar -->
+                    <div class="flex-1 min-w-0 pr-1">
+                        <h3 id="trackTitle" class="font-semibold text-[13px] text-gray-100 truncate drop-shadow-sm" aria-live="polite">Song 1</h3>
+                        <div class="flex items-center text-[10px] text-gray-300 mt-1 gap-2 font-mono drop-shadow-sm">
+                            <span id="currentTime">0:00</span>
+                            <div class="flex-1 h-[3px] bg-white/20 rounded-full relative overflow-hidden" role="progressbar" aria-label="Track progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                                <div id="progressFill" class="absolute top-0 left-0 h-full w-0 bg-white rounded-full progress-bar shadow-[0_0_5px_rgba(255,255,255,0.8)]"></div>
+                            </div>
+                            <span id="totalTime">3:58</span>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="flex items-center gap-2 mr-0.5" aria-label="Music controls">
+                        <button id="previousBtn" type="button" aria-label="Previous track" class="music-ctrl-btn flex h-7 w-7 items-center justify-center text-white/80 hover:text-white rounded-full bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md transition-all active:scale-90">
+                            <i class="fas fa-step-backward text-[12px]" aria-hidden="true"></i>
+                        </button>
+                        <button id="playBtn" type="button" aria-label="Play music" aria-pressed="false" class="music-ctrl-btn flex h-8 w-8 items-center justify-center text-white rounded-full bg-white/15 hover:bg-white/25 border border-white/25 backdrop-blur-md shadow-sm transition-all active:scale-90">
+                            <i class="fas fa-play text-[13px] drop-shadow-md" id="playIcon"></i>
+                        </button>
+                        <button id="nextBtn" type="button" aria-label="Next track" class="music-ctrl-btn flex h-7 w-7 items-center justify-center text-white/80 hover:text-white rounded-full bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md transition-all active:scale-90">
+                            <i class="fas fa-step-forward text-[12px]" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 px-1" aria-label="Volume controls">
+                    <button id="muteBtn" type="button" aria-label="Mute music" aria-pressed="false" class="music-ctrl-btn flex h-6 w-6 flex-shrink-0 items-center justify-center text-white/80 hover:text-white rounded-full bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md transition-all active:scale-90">
+                        <i id="volumeIcon" class="fas fa-volume-high text-[10px]" aria-hidden="true"></i>
+                    </button>
+                    <input id="volumeSlider" type="range" min="0" max="1" step="0.01" value="0.7" aria-label="Music volume" class="w-full">
+                    <span id="volumeValue" class="w-7 text-right text-[9px] font-mono text-gray-300">70%</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section id="faq" class="route-page destination-page faq-page" aria-labelledby="faqTitle" tabindex="-1">
+        <header class="faq-header">
+            <p class="faq-eyebrow">HELP CENTER</p>
+            <h1 id="faqTitle" class="destination-title">
+                <i class="fas fa-circle-question" aria-hidden="true"></i>
+                Frequently asked questions
+            </h1>
+            <p class="destination-copy">Step-by-step guides for using the profile.</p>
+        </header>
+
+        <div class="faq-layout">
+            <nav class="faq-topics" role="tablist" aria-label="FAQ topics" aria-orientation="vertical">
+                <button id="faqTabMusic" class="faq-topic is-active" type="button" role="tab"
+                    aria-selected="true" aria-controls="faqPanelMusic" tabindex="0" data-faq-tab="faqPanelMusic">
+                    <span class="faq-topic-icon-wrap"><i class="fas fa-download" aria-hidden="true"></i></span>
+                    <span class="faq-topic-title">Download</span>
+                    <i class="fas fa-chevron-right faq-chevron" aria-hidden="true"></i>
+                </button>
+                <button id="faqTabNavigation" class="faq-topic" type="button" role="tab"
+                    aria-selected="false" aria-controls="faqPanelNavigation" tabindex="-1" data-faq-tab="faqPanelNavigation">
+                    <span class="faq-topic-icon-wrap"><i class="fas fa-compass" aria-hidden="true"></i></span>
+                    <span class="faq-topic-title">Navigate the profile</span>
+                    <i class="fas fa-chevron-right faq-chevron" aria-hidden="true"></i>
+                </button>
+                <button id="faqTabBackground" class="faq-topic" type="button" role="tab"
+                    aria-selected="false" aria-controls="faqPanelBackground" tabindex="-1" data-faq-tab="faqPanelBackground">
+                    <span class="faq-topic-icon-wrap"><i class="fas fa-film" aria-hidden="true"></i></span>
+                    <span class="faq-topic-title">Background videos</span>
+                    <i class="fas fa-chevron-right faq-chevron" aria-hidden="true"></i>
+                </button>
+                <button id="faqTabDownloads" class="faq-topic" type="button" role="tab"
+                    aria-selected="false" aria-controls="faqPanelDownloads" tabindex="-1" data-faq-tab="faqPanelDownloads">
+                    <span class="faq-topic-icon-wrap"><i class="fas fa-folder-open" aria-hidden="true"></i></span>
+                    <span class="faq-topic-title">Find downloads</span>
+                    <i class="fas fa-chevron-right faq-chevron" aria-hidden="true"></i>
+                </button>
+                <button id="faqTabProfile" class="faq-topic" type="button" role="tab"
+                    aria-selected="false" aria-controls="faqPanelProfile" tabindex="-1" data-faq-tab="faqPanelProfile">
+                    <span class="faq-topic-icon-wrap"><i class="fas fa-user" aria-hidden="true"></i></span>
+                    <span class="faq-topic-title">Profile &amp; socials</span>
+                    <i class="fas fa-chevron-right faq-chevron" aria-hidden="true"></i>
+                </button>
+                <button id="faqTabVolume" class="faq-topic" type="button" role="tab"
+                    aria-selected="false" aria-controls="faqPanelVolume" tabindex="-1" data-faq-tab="faqPanelVolume">
+                    <span class="faq-topic-icon-wrap"><i class="fas fa-volume-high" aria-hidden="true"></i></span>
+                    <span class="faq-topic-title">Adjust volume</span>
+                    <i class="fas fa-chevron-right faq-chevron" aria-hidden="true"></i>
+                </button>
+            </nav>
+
+            <div class="faq-content">
+                <article id="faqPanelMusic" class="faq-panel" role="tabpanel" aria-labelledby="faqTabMusic" tabindex="0">
+                    <p class="faq-panel-kicker">DOWNLOADS</p>
+                    <h2>How to Download file ?</h2>
+                    <ol class="faq-steps">
+                        <li><div class="faq-step-content"><span>Open <strong>Profile</strong>.</span></div></li>
+                        <li><div class="faq-step-content"><span>Press play.</span></div></li>
+                        <li><div class="faq-step-content"><span>Choose a track or adjust the volume.</span></div></li>
+                    </ol>
+                </article>
+
+                <article id="faqPanelNavigation" class="faq-panel" role="tabpanel" aria-labelledby="faqTabNavigation" tabindex="0" hidden>
+                    <p class="faq-panel-kicker">SITE NAVIGATION</p>
+                    <h2>How do I navigate the profile?</h2>
+                    <ol class="faq-steps">
+                        <li><div class="faq-step-content"><span>Open the menu.</span></div></li>
+                        <li><div class="faq-step-content"><span>Select a page.</span></div></li>
+                        <li><div class="faq-step-content"><span>Close the menu when finished.</span></div></li>
+                    </ol>
+                </article>
+
+                <article id="faqPanelBackground" class="faq-panel" role="tabpanel" aria-labelledby="faqTabBackground" tabindex="0" hidden>
+                    <p class="faq-panel-kicker">BACKGROUND</p>
+                    <h2>How do the background videos work?</h2>
+                    <ol class="faq-steps">
+                        <li><div class="faq-step-content"><span>The background video starts automatically.</span></div></li>
+                        <li><div class="faq-step-content"><span>Wait for the background to play.</span></div></li>
+                        <li><div class="faq-step-content"><span>The video changes automatically.</span></div></li>
+                    </ol>
+                </article>
+
+                <article id="faqPanelDownloads" class="faq-panel" role="tabpanel" aria-labelledby="faqTabDownloads" tabindex="0" hidden>
+                    <p class="faq-panel-kicker">DOWNLOADS</p>
+                    <h2>Where can I find downloads?</h2>
+                    <ol class="faq-steps">
+                        <li><div class="faq-step-content"><span>Open the menu and select <strong>Download</strong>.</span></div></li>
+                        <li><div class="faq-step-content"><span>Find a file.</span></div></li>
+                        <li><div class="faq-step-content"><span>Select its link.</span></div></li>
+                    </ol>
+                </article>
+
+                <article id="faqPanelProfile" class="faq-panel" role="tabpanel" aria-labelledby="faqTabProfile" tabindex="0" hidden>
+                    <p class="faq-panel-kicker">PROFILE</p>
+                    <h2>How do I view the profile and social links?</h2>
+                    <ol class="faq-steps">
+                        <li><div class="faq-step-content"><span>Open <strong>Profile</strong>.</span></div></li>
+                        <li><div class="faq-step-content"><span>Review the profile and social links.</span></div></li>
+                        <li><div class="faq-step-content"><span>Select a social link.</span></div></li>
+                    </ol>
+                </article>
+
+                <article id="faqPanelVolume" class="faq-panel" role="tabpanel" aria-labelledby="faqTabVolume" tabindex="0" hidden>
+                    <p class="faq-panel-kicker">AUDIO CONTROLS</p>
+                    <h2>How do I adjust or mute the music?</h2>
+                    <ol class="faq-steps">
+                        <li><div class="faq-step-content"><span>Move the volume slider.</span></div></li>
+                        <li><div class="faq-step-content"><span>Press the speaker button to mute or unmute.</span></div></li>
+                        <li><div class="faq-step-content"><span>Use play to pause or resume.</span></div></li>
+                    </ol>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
